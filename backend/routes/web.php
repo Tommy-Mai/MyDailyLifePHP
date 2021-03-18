@@ -2,17 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+Route::get('/meal_tags', 'App\Http\Controllers\MealTagController@index')->name('mealTags.index');
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/meal_tags/{id}', 'App\Http\Controllers\MealTagController@show')->name('mealTags.show');
+
+// Route::get('/meal_tasks/{id}', 'MealTagController@show')->name('mealTasks.show');
+
+
+// Auth::routes();
+
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

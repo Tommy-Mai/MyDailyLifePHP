@@ -10,14 +10,43 @@ services:
     ports:
       - 10080:80
     volumes:
-      - ./backend:/work
+      - ./backend/app:/work/app
+      - ./backend/config:/work/config
+      - ./backend/database:/work/database
+      - ./backend/public:/work/public
+      - ./backend/resources:/work/resources
+      - ./backend/routes:/work/routes
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     working_dir: /work
 
   db:
-    build: ./docker/mysql
+    image: mysql:8.0
     volumes:
       - db-store:/var/lib/mysql
+      - ./logs:/var/log/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    environment:
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - TZ=${TZ}
+    ports:
+      - "13306:3306" 
+
+  db-testing:
+    image: mysql:8.0
+    volumes:
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+    tmpfs:
+      - /var/lib/mysql
+      - /var/log/mysql
+    environment:
+      - MYSQL_DATABASE=${DB_NAME}
+      - MYSQL_USER=${DB_USER}
+      - MYSQL_PASSWORD=${DB_PASS}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+      - TZ=${TZ}
 
 volumes:
   db-store:

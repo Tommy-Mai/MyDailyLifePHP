@@ -11,6 +11,3 @@ Homestead.json
 Homestead.yaml
 npm-debug.log
 yarn-error.log
-
-# 自分用のメモファイルを無視する
-memo.md

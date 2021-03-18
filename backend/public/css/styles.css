@@ -1,0 +1,157 @@
+@import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
+@import "color_folder";
+
+/* ----ここからreset---- */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  font: 100%/1.5 'Arial', "Meiryo", 'Hiragino Sans', sans-serif;
+  line-height: 1.7;
+  letter-spacing: 1px;
+}
+
+ul, li {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+  color: #2d3133;
+  font-size: 14px;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin: 0;
+}
+
+input {
+  background-color: transparent;
+  outline-width: 0;
+}
+
+form input[type="submit"] {
+  border: none;
+  cursor: pointer;
+}
+/* ----ここまでreset---- */
+
+body {
+  background-color: #f4f7f8;
+  color: #243750;
+}
+
+.navbar {
+  margin: 2rem 0 2.5rem 0;
+}
+
+.my-navbar {
+  align-items: center;
+  background: #8fd3f5;
+  display: flex;
+  height: 64px;
+  justify-content: space-between;
+  padding: 0 2%;
+  margin-bottom: 3rem;
+}
+
+.my-navbar-brand {
+  font-size: 22px;
+}
+
+.my-navbar-brand,
+.my-navbar-item {
+  color: #fff;
+}
+
+.my-navbar-brand:hover,
+a.my-navbar-item:hover {
+  color: #5aa1d8;
+}
+
+.table td:nth-child(2),
+.table td:nth-child(3),
+.table td:nth-child(4) {
+  white-space: nowrap;
+  width: 1px;
+}
+
+.form-control[disabled],
+.form-control[readonly] {
+  background-color: #fff;
+}
+
+/* タスク一覧などのコンテナ */
+.main-container {
+  float: none;
+  margin: 0 auto;
+  max-width: 600px;
+}
+
+/* タスク一覧などのコンテナ内のタブ */
+.panel-default>.panel-heading {
+  background-color: #fff;
+  border-color: #c1ced7;
+  box-shadow: 0 2px 6px #c1ced7;
+  padding: 0;
+}
+
+.container-tabs.col-md-3 {
+  padding: 16px 30px;
+  color: #8899a6;
+  text-align: center;
+}
+.nav.container-tabs>li>a:hover {
+  color: #243750;
+  border-bottom: 2px solid #eee;
+}
+li.active .container-tabs {
+  border-bottom: 2px solid #8fd3f5;
+  color: #243750;
+}
+
+/* タスク一覧などのコンテナ内 タグ表示部分 */
+.tags-index-item.row {
+  padding: 20px 30px;
+  background-color: white;
+  /* overflow: hidden; */
+  box-shadow: 0 2px 6px #c1ced7;
+  position: relative;
+  min-height: 120px;
+  margin: 0;
+}
+
+.tag-name {
+  font-weight: 500;
+  font-size: 26px;
+}
+
+.tag-count {
+  float: right;
+  font-size: 16px;
+  font-weight: 300;
+  text-align: right;
+}
+.tag-count a {
+  font-size: 18px;
+}
+
+.to-create-tag-index {
+  text-align: right;
+  float: right;
+  margin-top: 15px;
+  font-size: 14px;
+}
+.to-create-tag-index a {
+  color: #8899a6;
+}
+.to-create-tag-index a:hover {
+  color: #243750;
+}
