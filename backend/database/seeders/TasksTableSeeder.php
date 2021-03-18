@@ -1,0 +1,36 @@
+<?php
+
+namespace Database\Seeders;
+
+use Carbon\Carbon;
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class TasksTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $user = DB::table('users')->first();
+
+        foreach (range(1, 4) as $num) {
+            DB::table('tasks')->insert([
+                'name' => "サンプルタスク".$num,
+                'description' => "サンプルタスク詳細".$num,
+                'date' => Carbon::now()->addDay($num),
+                'task_tag_id' => $num,
+                'user_id' => $user->id,
+                'with_whom' => "{$num}人",
+                'where' => "",
+                'time' => Carbon::now(),
+                'protected' => false,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ]);
+        }
+    }
+}

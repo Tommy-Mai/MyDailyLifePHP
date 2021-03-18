@@ -5,11 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class MealTask extends Model
+class TaskTag extends Model
 {
     use HasFactory;
-    public function meal_comments()
+    public function tasks()
     {
-        return $this->hasMany('\App\MealComment', 'task_id');
+        return $this->hasMany('\App\Task', 'task_tag_id');
     }
 }

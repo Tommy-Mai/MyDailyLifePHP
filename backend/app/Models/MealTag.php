@@ -10,6 +10,6 @@ class MealTag extends Model
     use HasFactory;
     public function meal_tasks()
     {
-        return $this->hasMany('\App\MealTask', 'meal_task_id');
+        return $this->hasMany('\App\MealTask', 'meal_tag_id');
     }
 }
