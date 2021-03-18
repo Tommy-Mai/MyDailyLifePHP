@@ -16,4 +16,13 @@ class MealTagController extends Controller
             'meal_tags' => $meal_tags,
         ]);
     }
+
+    public function show()
+    {
+        $meal_tags = MealTag::all();
+
+        return view('meal_tags/show', [
+            'meal_tags' => $meal_tags,
+        ]);
+    }
 }

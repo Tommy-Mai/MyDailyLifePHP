@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>MyDailyLifePHP</title>
+  <title>MyDailyLifePHP - @yield('title')</title>
   <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
@@ -15,29 +15,26 @@
   </header>
   <main>
     <div class="container">
-      <div class="row">
-        <div class="col col-md-4">
-          <nav class="panel panel-default">
-            <div class="panel-heading">フォルダ</div>
-            <div class="panel-body">
-              <a href="#" class="btn btn-default btn-block">
-                フォルダを追加する
-              </a>
-            </div>
-            <div class="list-group">
-              @foreach($meal_tags as $meal_tag)
-                <a href="{{ route('mealTags.index', ['id' => $meal_tag->id]) }}" class="list-group-item">
-                  {{ $meal_tag->title }}
-                </a>
-              @endforeach
-            </div>
-          </nav>
-        </div>
-        <div class="column col-md-8">
-          <!-- ここにタスクが表示される -->
+      @yield('content')
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-3 col-xs-2"></div>
+          <div class="col-md-3 col-xs-4">
+            <h3>ご利用ガイド</h3>
+            <a href="#"">MyDailyLifeとは</a>
+            <a href="#"">よくある質問</a>
+          </div>
+          <div class="col-md-3 col-xs-4">
+            <h3>サイト情報</h3>
+            <a href="#"">利用規約</a>
+            <a href="#"">プライバシーポリシー</a>
+          </div>
+          <div class="col-md-3 col-xs-2"></div>
         </div>
       </div>
-    </div>
+    </footer>
   </main>
 </body>
 </html>

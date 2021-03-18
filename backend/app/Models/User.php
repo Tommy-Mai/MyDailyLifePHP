@@ -40,4 +40,39 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function meal_tasks()
+    {
+        return $this->hasMany('App\MealTask');
+    }
+
+    public function meal_comments()
+    {
+        return $this->hasMany('\App\MealComment');
+    }
+
+    public function task_tags()
+    {
+        return $this->hasMany('App\TaskTag');
+    }
+
+    public function tasks()
+    {
+        return $this->hasMany('App\Task');
+    }
+
+    public function task_comments()
+    {
+        return $this->hasMany('\App\TaskComment');
+    }
+
+    public function memos()
+    {
+        return $this->hasMany('\App\Memo');
+    }
+
+    public function histories()
+    {
+        return $this->hasMany('\App\History');
+    }
 }
