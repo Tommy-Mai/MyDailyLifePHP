@@ -1,5 +1,4 @@
 @import url('https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css');
-@import "color_folder";
 
 /* ----ここからreset---- */
 * {
@@ -48,6 +47,10 @@ body {
   background-color: #f4f7f8;
   color: #243750;
   margin-bottom: 200px;
+}
+
+:focus {
+  outline: none;
 }
 /* ----ここまでreset---- */
 
@@ -121,6 +124,7 @@ a.my-navbar-item:hover {
 }
 /* ----ここまでフッター---- */
 
+/* -----タスク表示関連-----*/
 /* タスク一覧などのコンテナ */
 .main-container {
   float: none;
@@ -187,4 +191,63 @@ li.active .container-tabs {
 }
 .to-create-tag-index a:hover {
   color: #243750;
+}
+
+/* ----新規作成・編集ページ---- */
+.panel-default>.panel-heading.form-title{
+  padding: 10px 30px;
+  font-size: 24px;
+  color: #8899a6;
+  font-weight: 300;
+  background-color: #ddebf1;
+  box-shadow: none;
+}
+
+.form-items {
+  padding: 0 15px;
+  color: #2d3133;
+  font-size: 16px;
+  letter-spacing: 1.5px;
+}
+
+label.form-label {
+  padding: 15px 0 0;
+  font-weight: 400;
+}
+
+.form-items input, .form-items textarea {
+  padding: 10px;
+  border: 1.5px solid #c1ced7;
+}
+
+.form-items textarea {
+  min-height: 110px;
+  resize: none;
+}
+
+#datepicker {
+  letter-spacing: 1.5px;
+}
+
+.form-tag-select {
+  padding: 10px;
+  border: 1px solid #c1ced7;
+  letter-spacing: 1.5px;
+  color: #2d3133;
+}
+
+.form-btn {
+  background-color: #8fd3f5;
+  color: white;
+  cursor: pointer;
+  font-weight: 400;
+  border-radius: 2px;
+  letter-spacing: 6px;
+  font-size: 16px;
+  line-height: 20px;
+}
+
+.form-btn:hover {
+  background-color: #5aa1d8;
+  color: white;
 }

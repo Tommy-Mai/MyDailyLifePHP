@@ -6,6 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>MyDailyLifePHP - @yield('title')</title>
   <link rel="stylesheet" href="/css/styles.css">
+  @extends('common.js')
 </head>
 <body>
   <header>
@@ -36,5 +37,6 @@
       </div>
     </footer>
   </main>
+  @yield('datepicker_js')
 </body>
 </html>

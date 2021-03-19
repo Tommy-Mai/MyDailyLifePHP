@@ -20,16 +20,16 @@
         @foreach($meal_tags as $meal_tag)
           <div class="tags-index-item row">
             <div class="tag-name col-md-6 col-xs-8">
-              <p><?php echo $meal_tag->name ?></p>
+              <p>{{$meal_tag->name}}</p>
             </div>
             <div class="tag-count col-md-3 col-xs-4">
-              <a href="{{ route('mealTags.show', ['id' => $meal_tag->id]) }}">
+              <a href="#">
                 タスク一覧
               </a>
               <p>0件</P>
             </div>
             <div class="to-create-tag-index col-xs-12">
-              <a href="#">タスク作成</a>
+              <a href="{{ route('meal_tasks.create') }}">タスク作成</a>
             </div>
           </div>
         @endforeach

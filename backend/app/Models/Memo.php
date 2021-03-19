@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Memo extends Model
 {
     use HasFactory;
+
+// リーレーション---
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

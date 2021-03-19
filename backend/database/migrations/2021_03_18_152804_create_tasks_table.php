@@ -17,8 +17,8 @@ class CreateTasksTable extends Migration
             $table->id();
             $table->string('name',30);
             $table->text('description')->nullable();
-            $table->datetime('date');
-            $table->foreignId('task_tag_id')
+            $table->date('date');
+            $table->foreignId('tag_id')
                 ->constrained('task_tags')
                 ->onDelete('cascade');
             $table->foreignId('user_id')
