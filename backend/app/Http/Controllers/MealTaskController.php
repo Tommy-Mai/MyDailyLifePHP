@@ -30,8 +30,10 @@ class MealTaskController extends Controller
         // 食事タスクモデルのインスタンスを作成する
         $task = new MealTask();
 
-        // 要編集！！！！！！！！
-        $task->user_id = 1;
+        // ユーザーに紐付けて保存
+        // 要確認！！！！！！！！
+        // $task->user_id = 1;
+        Auth::user()->meal_tasks()->save($task);
 
         // 各要素に入力値を代入する
         $task->name = $request->name;
@@ -92,9 +94,16 @@ class MealTaskController extends Controller
         return redirect()->route('meal_tags.index');
     }
 
-    // public function show()
+    public function remove(int $id)
+    {
+        MealTask::destroy($id);
+        // 要編集！！！！！！！！
+        return redirect('/users');
+    }
+
+    // public function show(int $id)
     // {
-    //     $meal_tasks = MealTask::all();
+    //     $meal_tasks = Auth::user()->meal_tasks()->get();
 
     //     return view('meal_tasks/show', [
     //         'meal_tasks' => $meal_tasks,

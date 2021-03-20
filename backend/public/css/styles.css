@@ -52,18 +52,18 @@ body {
 :focus {
   outline: none;
 }
+
+input[type=checkbox], input[type=radio] {
+  margin: 4px -20px 0;
+}
 /* ----ここまでreset---- */
 
 /* ----ここからヘッダー---- */
-.navbar {
-  margin: 2rem 0 2.5rem 0;
-}
-
 .my-navbar {
   align-items: center;
   background: #8fd3f5;
   display: flex;
-  height: 64px;
+  min-height: 64px;
   justify-content: space-between;
   padding: 0 2%;
   margin-bottom: 3rem;
@@ -94,6 +94,23 @@ a.my-navbar-item:hover {
 .form-control[readonly] {
   background-color: #fff;
 }
+
+#my-navbar-nav a {
+  color: #fff;
+}
+
+#my-navbar-nav a:hover{
+  color: #5aa1d8;
+}
+
+#my-navbar-toggler {
+  border-color: transparent;
+  color: #fff;
+}
+
+#my-navbar-toggler .navbar-toggler-icon {
+  background-image:url("data:image/svg+xml;charset=utf8,%3Csvg viewBox='0 0 30 30' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath stroke='rgba(255,255,255,1)' stroke-width='2' stroke-linecap='round' stroke-miterlimit='10' d='M4 8h24M4 16h24M4 24h24'/%3E%3C/svg%3E");
+}
 /* ----ここまでヘッダー---- */
 
 /* ----ここからフッター---- */
@@ -113,6 +130,7 @@ a.my-navbar-item:hover {
 }
 .footer h3 {
   font-weight: 600;
+  font-size: 21px;
 }
 .footer a {
   color: #8899a6;
@@ -126,7 +144,7 @@ a.my-navbar-item:hover {
 
 /* -----タスク表示関連-----*/
 /* タスク一覧などのコンテナ */
-.main-container {
+.main-container.col.col-xs-12 {
   float: none;
   margin: 0 auto;
   max-width: 600px;
@@ -140,10 +158,12 @@ a.my-navbar-item:hover {
   padding: 0;
 }
 
-.container-tabs.col-md-3 {
-  padding: 16px 30px;
+.container-tabs {
   color: #8899a6;
   text-align: center;
+}
+.nav>li>a {
+  padding: 16px 30px;
 }
 .nav.container-tabs>li>a:hover {
   color: #243750;
@@ -186,15 +206,16 @@ li.active .container-tabs {
   margin-top: 15px;
   font-size: 14px;
 }
-.to-create-tag-index a {
+.to-create-tag-index a,.tags-index-item a {
   color: #8899a6;
 }
-.to-create-tag-index a:hover {
+.to-create-tag-index a:hover, .tags-index-item a:hover {
   color: #243750;
+  text-decoration: none;
 }
 
 /* ----新規作成・編集ページ---- */
-.panel-default>.panel-heading.form-title{
+.panel-default>.panel-heading.form-title , .form-title {
   padding: 10px 30px;
   font-size: 24px;
   color: #8899a6;
@@ -248,6 +269,15 @@ label.form-label {
 }
 
 .form-btn:hover {
+  background-color: #5aa1d8;
+  color: white;
+}
+
+.login-btn{
+  background-color: #8fd3f5;
+  color: white;
+}
+.login-btn:hover {
   background-color: #5aa1d8;
   color: white;
 }

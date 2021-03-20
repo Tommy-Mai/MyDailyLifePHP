@@ -8,9 +8,9 @@
 <form method="POST" action="{{ route('meal_tasks.create') }}" class="form-items">
   @csrf
   <label class="control-label form-label col-xs-12">日付</label>
-  <input type="text" id="datepicker" class="col-xs-4" readonly placeholder="日付を選択" name="date" value="{{ old('date') }}"/>
+  <input type="text" id="datepicker" class="col-xs-5" readonly placeholder="日付を選択" name="date" value="{{ old('date') }}"/>
   <label class="control-label form-label col-xs-12">タグ</label>
-  <select class="col-xs-4 form-tag-select" name="tag_id">
+  <select class="col-xs-5 form-tag-select" name="tag_id">
     <option value="" hidden>タグを選択</option>
     @foreach($meal_tags as $meal_tag)
       @if(old('tag_id') == $meal_tag->id)
@@ -29,7 +29,7 @@
   <label class="control-label form-label col-xs-12">どこで</label>
   <input type="text" class="col-xs-12" name="where" value="{{ old('where') }}"/>
   <label class="control-label form-label col-xs-12" name="when">いつ</label>
-  <input type="time" class="col-xs-4" name="time" value="{{ old('time') }}"/>
+  <input type="time" class="col-xs-5" name="time" value="{{ old('time') }}"/>
   <button type="submit" class="btn btn-lg form-btn col-xs-3 col-xs-offset-9">登録</button>
 </form>
 @endsection

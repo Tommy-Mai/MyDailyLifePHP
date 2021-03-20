@@ -14,7 +14,7 @@ class AddColumnToUsersTable extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->boolean('image_exist')->default(false);
+            $table->string('image')->default('icon_penguin.jpg');
             $table->boolean('admin')->default(false);
             $table->boolean('protected')->default(false);
             $table->datetime('last_login_at');
@@ -33,7 +33,7 @@ class AddColumnToUsersTable extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('image_exist');
+            $table->dropColumn('image');
             $table->dropColumn('admin');
             $table->dropColumn('protected');
             $table->dropColumn('last_login_at');

@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="row">
-  <div class="col col-sm-10 main-container">
+  <div class="col col-xs-12 main-container">
     <div class="panel panel-default">
       <div class="panel-heading form-title">@yield('form-title')</div>
       <div class="panel-body">
