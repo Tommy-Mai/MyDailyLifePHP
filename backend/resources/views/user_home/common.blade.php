@@ -80,7 +80,7 @@
                   </div>
                   @endif
                 <div class="col-xs-4 col-xs-offset-8 task-index-datetime">
-                  <a href="#">{{$task->getFormateDate()}}　{{$task->getFormateTime()}}</a>
+                  <a href="#">{{$task->getFormatDate()}}　{{$task->getFormatTime()}}</a>
                 </div>
               </div>
             @endforeach

@@ -44,4 +44,26 @@ $(function () {
       $("#edit-modal-name").attr("value", `${tagName}`)
     };
   });
+
+  // ここからコメント投稿欄 ファイル選択中はコメント欄ブロック
+  $('#comment_image').on('change',function(){
+    // ファイルが選択されているかどうかで分岐
+    if (Object.keys(this.files).length > 0) {
+      selectFile = this.files[0];
+      $('.fa-image').css('color', '#4ab37d');
+      // テキスト入力を不可にする処理(入力済みの内容を取得保持。)
+      $('textarea').prop('disabled', true);
+      textValue = $('#comment_text').val();
+      $('#comment_text').val("");
+      $('textarea').prop('placeholder', "画像選択中");
+    } else {
+      selectFile = [];
+      $('.fa-image').css('color', '');
+      // テキスト入力を可能にする処理
+      $('textarea').prop('disabled', false);
+      $('#comment_text').val(`${textValue}`);
+      $('textarea').prop('placeholder', "Aa");
+    }
+  });
+
 })

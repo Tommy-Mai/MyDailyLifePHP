@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\TaskTag;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateTag extends FormRequest

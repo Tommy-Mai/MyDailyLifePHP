@@ -11,6 +11,7 @@ Route::group(['middleware' => 'auth'], function() {
   # ユーザー その他タスク
   Route::get('/users/other', 'App\Http\Controllers\UserHomeController@task')->name('user_home
   .task');
+    # ユーザー情報編集ページ
 
 // 食事タグ関連
   # タグ一覧ページ
@@ -31,6 +32,12 @@ Route::group(['middleware' => 'auth'], function() {
   Route::delete('/meal_tasks/{id}', 'App\Http\Controllers\MealTaskController@delete')->name('meal_tasks.delete');
   # タスク詳細ページ
   Route::get('/meal_tasks/{id}', 'App\Http\Controllers\MealTaskController@show')->name('meal_tasks.show');
+
+  // 食事タスク コメント関連
+  # コメント作成処理 Create
+  Route::post('/meal_tasks/{task_id}/comments/create', 'App\Http\Controllers\MealCommentController@create')->name('meal_comments.create');
+  # コメント削除
+  Route::delete('/meal_tasks/{task_id}/comments/{id}', 'App\Http\Controllers\MealCommentController@delete')->name('meal_comments.delete');
 
 // その他タグ関連
   # タグ一覧ページ
@@ -58,6 +65,12 @@ Route::group(['middleware' => 'auth'], function() {
   # タスク詳細ページ
   Route::get('/tasks/{id}', 'App\Http\Controllers\TaskController@show')->name('tasks.show');
 });
+
+// その他タスク コメント関連
+  # コメント作成処理 Create
+  Route::post('/tasks/{task_id}/comments/create', 'App\Http\Controllers\TaskCommentController@create')->name('task_comments.create');
+  # コメント削除
+  Route::delete('/task_tasks/{task_id}/comments/{id}', 'App\Http\Controllers\TaskCommentController@delete')->name('task_comments.delete');
 
 // ユーザー認証機能
 Auth::routes();

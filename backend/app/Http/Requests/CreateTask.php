@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\MealTask;
 use Illuminate\Foundation\Http\FormRequest;
 
 class CreateTask extends FormRequest

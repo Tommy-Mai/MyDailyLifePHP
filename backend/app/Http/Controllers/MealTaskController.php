@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 
 use App\Models\MealTag;
 use App\Models\MealTask;
+use App\Models\MealComment;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\CommonMethod;
 
 use App\Http\Requests\CreateTask;
 use App\Http\Requests\EditTask;
 
 class MealTaskController extends Controller
 {
+    use CommonMethod;
 // フォームを表示する-----
 # 食事タスク作成フォーム
 /**
@@ -90,7 +93,7 @@ class MealTaskController extends Controller
         // ユーザーに紐付けて保存
         Auth::user()->meal_tasks()->save($task);
 
-        // タスク詳細画面へリダイレクト
+        // タスク詳細画面へ
         return redirect()->route('meal_tasks.show', ['id' => $id]);
     }
 
@@ -100,17 +103,19 @@ class MealTaskController extends Controller
             MealTask::destroy($id);
         }
 
-        // ユーザー 食事タスクページへ遷移
+        // ユーザー 食事タスクページへ
         return redirect('/users');
     }
 
     public function show(int $id, Request $request)
     {
         $task = Auth::user()->meal_tasks()->find($id);
+        $comments = $task->meal_comments()->get();
 
         return view('tasks/show', [
             'task' => $task,
             'path' => $request->path(),
+            'comments' => $comments,
         ]);
     }
 }

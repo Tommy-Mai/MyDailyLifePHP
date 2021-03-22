@@ -6,14 +6,16 @@ use Illuminate\Http\Request;
 
 use App\Models\TaskTag;
 use App\Models\Task;
+use App\Models\TaskComment;
 use Illuminate\Support\Facades\Auth;
+use App\Traits\CommonMethod;
 
 use App\Http\Requests\CreateTask;
 use App\Http\Requests\EditTask;
 
 class TaskController extends Controller
 {
-    
+    use CommonMethod;
 // フォームを表示する-----
 # その他タスク作成フォーム
 /**
@@ -106,10 +108,12 @@ class TaskController extends Controller
     public function show(int $id, Request $request)
     {
         $task = Auth::user()->tasks()->find($id);
+        $comments = $task->task_comments()->get();
 
         return view('tasks/show', [
             'task' => $task,
             'path' => $request->path(),
+            'comments' => $comments,
         ]);
     }
 }

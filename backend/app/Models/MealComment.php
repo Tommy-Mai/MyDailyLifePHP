@@ -4,10 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\CommonMethod;
 
 class MealComment extends Model
 {
     use HasFactory;
+    use CommonMethod;
+
+    protected $fillable = [
+        'comment',
+        'image',
+    ];
 
 // リーレーション---
     public function user(){
@@ -17,4 +24,5 @@ class MealComment extends Model
     public function meal_task(){
         return $this->belongsTo('App\Models\MealTask');
     }
+
 }

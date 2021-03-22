@@ -16,7 +16,7 @@ class CreateMealCommentsTable extends Migration
         Schema::create('meal_comments', function (Blueprint $table) {
             $table->id();
             $table->string('comment', 140)->nullable();
-            $table->boolean('image_exist')->default(false);
+            $table->string('image')->nullable();
             $table->foreignId('task_id')
                 ->constrained('meal_tasks')
                 ->cascadeOnDelete()

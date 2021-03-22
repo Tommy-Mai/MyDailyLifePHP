@@ -2,7 +2,6 @@
 
 namespace App\Http\Requests;
 
-use App\MealTask;
 use Illuminate\Foundation\Http\FormRequest;
 
 class EditTask extends CreateTask
@@ -27,14 +26,4 @@ class EditTask extends CreateTask
      *
      * @return array
      */
-// 不要？？？？
-//     public function rules()
-//     {
-//         return parent::rules();
-//     }
-
-//     public function attributes()
-//     {
-//         return parent::attributes();
-//     }
 }

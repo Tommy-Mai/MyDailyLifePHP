@@ -1,18 +1,25 @@
 <?php namespace App\Traits;
 
+use Carbon\Carbon;
 use App\Models\MealTag;
 use App\Models\TaskTag;
 use App\Models\MealTask;
 use App\Models\TaskTask;
+use App\Models\MealComment;
+use App\Models\TaskComment;
 
 trait CommonMethod
 {
-  public function getFormateDate(){
+  public function getFormatDate(){
     return $this->date->format('Y/m/d');
   }
 
-  public function getFormateTime(){
+  public function getFormatTime(){
       return $this->time->format('H:i');
+  }
+
+  public function getFormatDateTime(){
+      return $this->created_at->format('Y/m/d H:i');
   }
 
   public function getMealTagName(){
@@ -25,11 +32,11 @@ trait CommonMethod
     return $tag->name;
   }
 
-  public function getFormateDateSearch(){
+  public function getFormatDateSearch(){
     return $this->format('Y/m/d');
   }
 
-  public function getFormateTimeSearch(){
+  public function getFormatTimeSearch(){
       return $this->format('H:i');
   }
 

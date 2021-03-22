@@ -15,6 +15,20 @@ RUN apt-get update && \
 RUN curl -sL https://deb.nodesource.com/setup_15.x | bash - && \
   apt-get install -y nodejs
 
+
+RUN apt-get install -y wget libjpeg-dev libfreetype6-dev &&\
+    apt-get install -y  libmagick++-dev \
+    libmagickwand-dev \
+    libpq-dev \
+    libfreetype6-dev \
+    libjpeg62-turbo-dev \
+    libpng-dev \
+    libwebp-dev \
+    libxpm-dev \
+  &&\
+  docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/ &&\
+  docker-php-ext-install -j$(nproc) gd
+
 COPY ./php.ini /usr/local/etc/php/php.ini
 
 WORKDIR /work

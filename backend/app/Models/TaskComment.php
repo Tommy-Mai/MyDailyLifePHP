@@ -4,10 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Traits\CommonMethod;
 
 class TaskComment extends Model
 {
     use HasFactory;
+    use CommonMethod;
+
+    protected $fillable = [
+        'comment',
+        'image',
+    ];
 
 // リーレーション---
     public function user(){

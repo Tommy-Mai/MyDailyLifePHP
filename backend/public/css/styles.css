@@ -56,6 +56,10 @@ body {
 input[type=checkbox], input[type=radio] {
   margin: 4px -20px 0;
 }
+
+textarea {
+  resize: none;
+}
 /* ----ここまでreset---- */
 
 /* ----ここからヘッダー---- */
@@ -354,6 +358,216 @@ div.task-show-btn {
   text-decoration: none;
 }
 
+/* タスク詳細ページコメント */
+.task-show-item.task-index-item {
+  box-shadow: 0;
+}
+.comment_new-container {
+  padding: 10px 0;
+  background-color: #8fd3f5;
+  line-height: 20px;
+}
+
+.comment_new-container textarea {
+  resize: none;
+  border: 1px solid #8fd3f5;
+  background-color: white;
+  padding: 10px;
+  font-size: 16px;
+  letter-spacing: 2px;
+  height: 120px;
+  overflow: scroll;
+  border-radius: 10px;
+}
+
+.comment_new-container textarea::placeholder {
+  color: #8899a6;
+}
+
+.comment_new-container textarea:disabled {
+  background-color: rgba(211, 211, 211, 0.5);
+  text-align: center;
+}
+
+.comment_new-container textarea:disabled::placeholder{
+  color: #8899a6;
+  padding-top: 20px;
+}
+
+#comment_image {
+  display: none; /* ファイル選択ボタン非表示 */
+}
+
+.comment_new-container i {
+  cursor: pointer;
+  line-height: 40px;
+  font-size: 24px;
+  color: white;
+}
+
+.comment_new-container i:hover {
+  color: #5aa1d8;
+}
+
+.comment_new-container button {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  padding: 0;
+  appearance: none;
+}
+
+i.fa-image{
+  transform: translateX(-10px);
+}
+
+nav.panel {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+.comment-container {
+  padding: 20px 30px;
+  background-color: #f4fbff;
+  height: 450px;
+  line-height: 20px;
+  border-top: 2px solid #8fd3f5;
+  overflow: scroll;
+}
+
+.balloon_comment {
+  display: block;
+  color: white;
+}
+
+  /* 右側からのコメント */
+.right_block_parent {
+  display: grid;
+}
+
+.right_block {
+  margin-bottom: 20px;
+  display: block;
+  float: right;
+  clear: both;
+}
+
+.right_comment_block {
+  display: block;
+}
+
+.right_comment_block a {
+  color: white;
+  text-decoration: underline white;
+}
+
+.right_comment_block a:hover {
+  color: #5aa1d8;
+  text-decoration: underline #5aa1d8;
+}
+
+.right_item_block {
+  clear: both;
+  float: right;
+  width: 100%;
+  max-width: 500px;
+}
+
+.comment_time_right {
+  font-size: 12px;
+  color: #243750;
+  text-align: right;
+}
+
+div.comment_destroy_right, div.comment_time_right {
+  padding-right: 0;
+}
+.comment_destroy_right button {
+  font-size: 12px;
+  color: #243750;
+  float: right;
+  margin-left: 10px;
+}
+
+.comment_destroy_right button:hover {
+  color: #243750;
+}
+
+.right_balloon {
+  position: relative;
+  background: #8fd3f5;
+  border: 1px solid  #8fd3f5;
+  padding: 6px 10px;
+  border-radius: 15px;
+  clear: both;
+  max-width: 500px;
+  float: right;
+}
+
+.right_balloon:after,
+.right_balloon:before {
+  left: 100%;
+  top: 50%;
+  border: solid transparent;
+  content: " ";
+  height: 0;
+  width: 0;
+  position: absolute;
+  pointer-events: none;
+}
+
+.right_balloon:after, .right_balloon:before{
+  border-color: rgba(200, 200, 200, 0);
+  border-left-color: #8fd3f5;
+  border-width: 6px;
+  margin-top: -6px;
+}
+
+.comment_hidden , #current_task_id {
+  display: none;
+}
+
+  /* コメント 画像 */
+#image_ballon {
+  width: 250px;
+  height: 200px;
+  padding-top: 35%;
+  border: none;
+  border-radius: 15px;
+  clear: both;
+  float: right;
+  background: none;
+  padding: 0;
+  box-shadow: 0 2px 6px #c1ced7;
+  vertical-align: bottom;
+}
+
+#image_ballon img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  border-radius: 15px;
+}
+
+#image_ballon:after,
+#image_ballon:before {
+  display: none;
+}
+
+#image_ballon:after, #image_ballon:before {
+  display: none;
+}
+
+#image_ballon a{
+  display: block;
+  width: 250px;
+  height: 200px;
+  border: none;
+  border-radius: 15px;
+  clear: both;
+  float: right;
+  background: none;
+}
 /* ----新規作成・編集ページ---- */
 .panel-default>.panel-heading.form-title , .form-title {
   padding: 10px 30px;

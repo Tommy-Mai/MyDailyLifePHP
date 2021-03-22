@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class EditTag extends FormRequest
+class CreateComment extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,8 +13,8 @@ class EditTag extends FormRequest
      */
     public function authorize()
     {
-        // タグ作成ページか検証
-        if (preg_match("#task_tags/[0-9]{1,}/edit#", $this->path())) {
+        // コメント作成リクエストか検証
+        if (preg_match("#meal_tasks/[0-9]{1,}/comments/create#", $this->path()) || preg_match('#tasks/[0-9]{1,}/comments/create#', $this->path())) {
             return true;
         }else{
             return false;
@@ -29,7 +29,8 @@ class EditTag extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:30',
+            'comment' => 'string|max:140|nullable',
+            'image' => 'nullable|image|file',
         ];
     }
 
@@ -37,7 +38,9 @@ class EditTag extends FormRequest
     public function attributes()
     {
         return [
-            'name' => 'タグ名',
+            'comment' => 'コメント',
+            'image' => '画像',
+            'created_at' => '作成日時',
         ];
     }
 }
