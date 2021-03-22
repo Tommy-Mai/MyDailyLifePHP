@@ -15,7 +15,7 @@
             <div class="col-xs-12">{{ $user->name }}</div>
             <div class="col-xs-12">{{ $user->email }}</div>
             <div class="col-xs-1 col-xs-offset-5">
-              <a href="#"><i class="fas fa-cog"></i></a>
+              <a href="{{ route('user_home.edit') }}"><i class="fas fa-cog"></i></a>
             </div>
           </div>
         </div>

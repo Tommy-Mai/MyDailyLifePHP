@@ -13,7 +13,11 @@
 <body>
   <header>
     <nav class="my-navbar navbar navbar-expand-md navbar-dark sticky-top">
-      <a class="my-navbar-brand navbar-brand mr-auto" href="/">MyDailyLife</a>
+      @if(Auth::check())
+        <a class="my-navbar-brand navbar-brand mr-auto">MyDailyLife</a>
+      @else
+        <a class="my-navbar-brand navbar-brand mr-auto" href="/">MyDailyLife</a>
+      @endif
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar7" id="my-navbar-toggler">
         <span class="navbar-toggler-icon"></span>
       </button>

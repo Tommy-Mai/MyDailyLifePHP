@@ -11,7 +11,14 @@ Route::group(['middleware' => 'auth'], function() {
   # ユーザー その他タスク
   Route::get('/users/other', 'App\Http\Controllers\UserHomeController@task')->name('user_home
   .task');
-    # ユーザー情報編集ページ
+  # ユーザー情報編集ページ
+  Route::get('/users/edit', 'App\Http\Controllers\UserHomeController@showEditForm')->name('user_home.edit');
+  # ユーザー情報編集 Update(edit)
+  Route::post('/users/edit', 'App\Http\Controllers\UserHomeController@edit');
+  # ユーザー情報編集ページ
+  Route::get('/users/edit/password', 'App\Http\Controllers\UserHomeController@showEditPasswordForm')->name('user_home.edit_password');
+  # ユーザー情報編集 Update(edit)
+  Route::post('/users/edit/password', 'App\Http\Controllers\UserHomeController@editPassword');
 
 // 食事タグ関連
   # タグ一覧ページ
