@@ -11,11 +11,11 @@ class TaskTag extends Model
 
 // リーレーション---
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function tasks()
     {
-        return $this->hasMany('\App\Task', 'tag_id');
+        return $this->hasMany('App\Models\Task', 'tag_id');
     }
 }

@@ -8,11 +8,11 @@
     <nav class="panel panel-default">
       <div class="panel-heading">
         <ul class="nav container-tabs">
-          <li class="nav-item active">
-            <a href="#" class="container-tabs">食事関連</a>
+          <li class="nav-item col-xs-3 active">
+            <a href="/meal_tags" class="container-tabs">食事関連</a>
           </li>
-          <li class="nav-item">
-            <a href="#" class="container-tabs">その他</a>
+          <li class="nav-item col-xs-3">
+            <a href="/task_tags" class="container-tabs">その他</a>
           </li>
         </ul>
       </div>

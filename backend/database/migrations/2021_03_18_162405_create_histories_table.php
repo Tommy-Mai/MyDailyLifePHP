@@ -17,7 +17,8 @@ class CreateHistoriesTable extends Migration
             $table->id();
             $table->foreignId('user_id')
                 ->constrained('users')
-                ->onDelete('cascade');
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->datetime('login_at')->nullable();
             $table->datetime('logout_at')->nullable();
             $table->string("used_time")->nullable();

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Models\MealTag;
 use App\Models\MealTask;
+use Illuminate\Support\Facades\Auth;
 
 use App\Http\Requests\CreateTask;
 use App\Http\Requests\EditTask;
@@ -15,13 +16,14 @@ class MealTaskController extends Controller
 // フォームを表示する-----
 # 食事タスク作成フォーム
 /**
- * GET /meal_tasks/create
+ * GET /tasks/create
  */
-    public function showCreateForm()
+    public function showCreateForm(Request $request)
     {
-        $meal_tags = MealTag::all();
-        return view('meal_tasks/create', [
-            'meal_tags' => $meal_tags,
+        $tags = MealTag::all();
+        return view('tasks/create', [
+            'tags' => $tags,
+            'path' => $request->path(),
         ]);
     }
 
@@ -29,11 +31,6 @@ class MealTaskController extends Controller
     {
         // 食事タスクモデルのインスタンスを作成する
         $task = new MealTask();
-
-        // ユーザーに紐付けて保存
-        // 要確認！！！！！！！！
-        // $task->user_id = 1;
-        Auth::user()->meal_tasks()->save($task);
 
         // 各要素に入力値を代入する
         $task->name = $request->name;
@@ -48,33 +45,35 @@ class MealTaskController extends Controller
         $task->date = date("Y-m-d", strtotime($date));
         $task->time = date("H:i:00", strtotime($request->time));
         // インスタンスの状態をデータベースに書き込む
-        $task->save();
+        // ユーザーに紐付けて保存
+        Auth::user()->meal_tasks()->save($task);
 
-        return redirect()->route('meal_tags.index', []);
+        return redirect('/users');
     }
 
 # 食事タスク編集フォーム
 /**
  * GET /meal_tasks/{id}/edit
  */
-    public function showEditForm(int $id)
+    public function showEditForm(int $id, Request $request)
     {
-        $meal_tags = MealTag::all();
-        $task = MealTask::find($id);
+        $tags = MealTag::all();
+        $task = Auth::user()->meal_tasks()->find($id);
         $task_date = date("Y年m月d日", strtotime($task->date));
         $task_time = date("H:i", strtotime($task->time));
 
-        return view('meal_tasks/edit', [
-            'meal_tags' => $meal_tags,
+        return view('tasks/edit', [
+            'tags' => $tags,
             'task' => $task,
             'task_date' => $task_date,
             'task_time' => $task_time,
+            'path' => $request->path(),
         ]);
     }
 
     public function edit(int $id, EditTask $request)
     {
-        $task = MealTask::find($id);
+        $task = Auth::user()->meal_tasks()->find($id);
 
         $task->name = $request->name;
         $task->description = $request->description;
@@ -88,25 +87,30 @@ class MealTaskController extends Controller
         $task->date = date("Y-m-d", strtotime($date));
         $task->time = date("H:i:00", strtotime($request->time));
         // インスタンスの状態をデータベースに書き込む
-        $task->save();
+        // ユーザーに紐付けて保存
+        Auth::user()->meal_tasks()->save($task);
 
-        // 要編集！！！！！！！！
-        return redirect()->route('meal_tags.index');
+        // タスク詳細画面へリダイレクト
+        return redirect()->route('meal_tasks.show', ['id' => $id]);
     }
 
-    public function remove(int $id)
+    public function delete(int $id)
     {
-        MealTask::destroy($id);
-        // 要編集！！！！！！！！
+        if(Auth::user()->meal_tasks()->find($id)->exists()){
+            MealTask::destroy($id);
+        }
+
+        // ユーザー 食事タスクページへ遷移
         return redirect('/users');
     }
 
-    // public function show(int $id)
-    // {
-    //     $meal_tasks = Auth::user()->meal_tasks()->get();
+    public function show(int $id, Request $request)
+    {
+        $task = Auth::user()->meal_tasks()->find($id);
 
-    //     return view('meal_tasks/show', [
-    //         'meal_tasks' => $meal_tasks,
-    //     ]);
-    // }
+        return view('tasks/show', [
+            'task' => $task,
+            'path' => $request->path(),
+        ]);
+    }
 }

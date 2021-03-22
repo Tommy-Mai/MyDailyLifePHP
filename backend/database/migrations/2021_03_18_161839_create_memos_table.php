@@ -19,7 +19,8 @@ class CreateMemosTable extends Migration
             $table->text('description')->nullable();
             $table->foreignId('user_id')
                 ->constrained('users')
-                ->onDelete('cascade');
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->boolean('protected')->default(false);
             $table->timestamps();
         });

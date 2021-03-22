@@ -8,6 +8,8 @@
   @extends('common.scripts')
   <link rel="stylesheet" href="/css/styles.css">
 </head>
+@yield('create-modal')
+@yield('edit-modal')
 <body>
   <header>
     <nav class="my-navbar navbar navbar-expand-md navbar-dark sticky-top">
@@ -19,10 +21,10 @@
         <ul class="navbar-nav ml-auto" id="my-navbar-nav">
           @if(Auth::check())
               <li class="nav-item my-navbar-item">
-                  <a class="nav-link" href="users">ようこそ, {{ Auth::user()->name }}さん</a>
+                  <a class="nav-link" href="/users">ようこそ, {{ Auth::user()->name }}さん</a>
               </li>
               <li class="nav-item my-navbar-item">
-                <a class="nav-link" href="#" id="logout">ログアウト</a>
+                <a class="nav-link" href="" id="logout">ログアウト</a>
                 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                   @csrf
                 </form>
@@ -38,11 +40,11 @@
         </ul>
       </div>
     </nav>
-    </div>
   </header>
   <main>
     <div class="container">
       @yield('content')
+      @yield('comment-container')
     </div>
     <footer class="footer">
       <div class="container">

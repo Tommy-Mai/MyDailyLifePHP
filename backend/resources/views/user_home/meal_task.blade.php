@@ -1,16 +1,21 @@
-@extends('common.application')
+@extends('user_home.common')
 
-@section('title', 'UserHome')
+@section('active-tab')
+<ul class="nav container-tabs">
+  <li class="nav-item col-xs-3 active">
+    <a href="/users" class="container-tabs">食事関連</a>
+  </li>
+  <li class="nav-item col-xs-3">
+    <a href="/users/other" class="container-tabs">その他</a>
+  </li>
+  <li class="nav-item col-xs-3 col-xs-offset-3">
+    <i class="fas fa-search-plus" id="search-toggle-btn"></i>
+  </li>
+</ul>
+@endsection
 
-@section('content')
-  <div class="row">
-    <div class="col col-xs-12 col-xl-12">
-      <nav class="panel panel-default">
-        <div class="panel-heading">
-          <img src="{{ asset('storage/profiles/'.$user->image) }}" alt="プロフィール画像">
-          ようこそ{{ $user->name }}ページへ
-        </div>
-      </nav>
-    </div>
-  </div>
+@section('home-create-tab')
+<div class="panel-heading home-create-tab">
+  <a href="{{ route('meal_tasks.create') }}" class="container-tabs ">新規食事タスク作成＋</a>
+</div>
 @endsection

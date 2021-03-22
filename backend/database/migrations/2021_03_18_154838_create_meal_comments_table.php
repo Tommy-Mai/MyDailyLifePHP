@@ -19,10 +19,12 @@ class CreateMealCommentsTable extends Migration
             $table->boolean('image_exist')->default(false);
             $table->foreignId('task_id')
                 ->constrained('meal_tasks')
-                ->onDelete('cascade');
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->foreignId('user_id')
                 ->constrained('users')
-                ->onDelete('cascade');
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->boolean('protected')->default(false);
             $table->timestamps();
         });

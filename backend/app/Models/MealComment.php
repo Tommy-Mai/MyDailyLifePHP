@@ -11,10 +11,10 @@ class MealComment extends Model
 
 // リーレーション---
     public function user(){
-        return $this->belongsTo('App\User');
+        return $this->belongsTo('App\Models\User');
     }
 
     public function meal_task(){
-        return $this->belongsTo('App\MealTask');
+        return $this->belongsTo('App\Models\MealTask');
     }
 }

@@ -2,21 +2,28 @@
 
 @section('title', 'タスク作成')
 
-@section('form-title', '食事タスク新規作成')
-
 @section('form-items')
-<form method="POST" action="{{ route('meal_tasks.create') }}" class="form-items">
+
+<!-- フォームの送信先 条件分岐 -->
+@if($path == "meal_tasks/create")
+  @section('form-title', '食事タスク新規作成')
+  <form method="POST" action="{{ route('meal_tasks.create') }}" class="form-items">
+@elseif($path == 'tasks/create')
+  @section('form-title', '食事タスク編集')
+  <form method="POST" action="{{ route('tasks.create') }}" class="form-items">
+@endif
+
   @csrf
   <label class="control-label form-label col-xs-12">日付</label>
   <input type="text" id="datepicker" class="col-xs-5" readonly placeholder="日付を選択" name="date" value="{{ old('date') }}"/>
   <label class="control-label form-label col-xs-12">タグ</label>
   <select class="col-xs-5 form-tag-select" name="tag_id">
     <option value="" hidden>タグを選択</option>
-    @foreach($meal_tags as $meal_tag)
-      @if(old('tag_id') == $meal_tag->id)
-        <option value="{{$meal_tag->id}}" selected="selected">{{$meal_tag->name}}</option>
+    @foreach($tags as $tag)
+      @if(old('tag_id') == $tag->id)
+        <option value="{{$tag->id}}" selected="selected">{{$tag->name}}</option>
       @else
-        <option value="{{$meal_tag->id}}">{{$meal_tag->name}}</option>
+        <option value="{{$tag->id}}">{{$tag->name}}</option>
       @endif
     @endforeach
   </select>
@@ -30,6 +37,6 @@
   <input type="text" class="col-xs-12" name="where" value="{{ old('where') }}"/>
   <label class="control-label form-label col-xs-12" name="when">いつ</label>
   <input type="time" class="col-xs-5" name="time" value="{{ old('time') }}"/>
-  <button type="submit" class="btn btn-lg form-btn col-xs-3 col-xs-offset-9">登録</button>
+  <button type="submit" class="btn form-btn col-xs-3 col-xs-offset-9">登録</button>
 </form>
 @endsection

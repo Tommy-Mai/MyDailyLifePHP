@@ -20,10 +20,12 @@ class CreateMealTasksTable extends Migration
             $table->date('date');
             $table->foreignId('tag_id')
                 ->constrained('meal_tags')
-                ->onDelete('cascade');
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->foreignId('user_id')
                 ->constrained('users')
-                ->onDelete('cascade');
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->string('with_whom', 30)->nullable();
             $table->string('where', 30)->nullable();
             $table->time('time');
