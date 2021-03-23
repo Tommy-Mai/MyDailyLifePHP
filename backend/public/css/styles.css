@@ -362,6 +362,13 @@ div.task-show-btn {
   text-decoration: none;
 }
 
+.task-index-datetime a:not([href]):not([tabindex]) {
+  color: #8899a6;
+}
+.task-index-datetime a:not([href]):not([tabindex]):hover {
+  color: #8899a6;
+}
+
 /* タスク詳細ページコメント */
 .task-show-item.task-index-item {
   box-shadow: 0;
@@ -748,5 +755,70 @@ p.modal-open-btn:hover {
 }
 
 div.to-create-tag-index.col-xs-11 {
+  padding: 0;
+}
+
+/* カレンダー関連 */
+div.calendar-container a {
+  color: #8899a6;
+}
+
+div.calendar-container a:hover {
+  color: #243750;
+  text-decoration: none;
+}
+
+.calendar-title a {
+  font-size: 20px;
+  font-weight: 600;
+  line-height: 34px;
+}
+
+.icon a {
+  font-size: 14px;
+  font-weight: 800;
+  line-height: 34px;
+}
+
+  /* 曜日表示 */
+.table>thead>tr {
+  border-top: 1px solid #c4d9e2;
+}
+.table>thead>tr>th,.table thead th {
+  border-bottom: 2px solid #8fd3f5;
+  width: 14.28%;
+}
+
+.my-month-calendar th {
+  padding: 6px;
+  border-left: 1px solid #c4d9e2;
+  border-right: 1px solid #c4d9e2;
+  border-collapse: collapse;
+  text-align: center;
+}
+
+.my-month-calendar td {
+  border-left: 1px solid #c4d9e2;
+  border-right: 1px solid #c4d9e2;
+  border-bottom: 1px solid #c4d9e2;
+  border-collapse: collapse;
+  height: 100px;
+  padding: 6px;
+}
+
+.saturday {
+  color: #a3d9ed;
+}
+
+.sunday {
+  color: #f18f65;
+}
+
+.task-count {
+  margin-top: 5px;
+}
+
+.task-count a.col-xs-12 {
+  font-size: 1.4vh;
   padding: 0;
 }

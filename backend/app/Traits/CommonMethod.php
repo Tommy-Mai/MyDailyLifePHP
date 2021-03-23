@@ -14,6 +14,10 @@ trait CommonMethod
     return $this->date->format('Y/m/d');
   }
 
+  public function getFormatDateHyphen(){
+    return $this->date->format('Y-m-d');
+  }
+
   public function getFormatTime(){
       return $this->time->format('H:i');
   }
@@ -44,4 +48,10 @@ trait CommonMethod
     $tag = MealTag::find($this);
     return $tag->name;
   }
+
+  public function getTaskNum($date){
+    $tasks = $this->whereDate('date', $date)->count();
+    return $tasks;
+  }
+
 }

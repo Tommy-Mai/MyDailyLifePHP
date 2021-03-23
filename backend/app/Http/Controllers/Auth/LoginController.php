@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
 
 class LoginController extends Controller
 {
@@ -27,7 +28,6 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = '/users';
-    // ↑'/users' URL要編集！！！！！！！！！！！！！！！！！！！！
     // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
@@ -38,5 +38,11 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    // ログイン直後に他のデバイス上のセッションを無効化する（新しくログインしたセッションを有効にする）
+    protected function authenticated(Request $request, $user)
+    {
+        auth()->logoutOtherDevices($request->input('password'));
     }
 }

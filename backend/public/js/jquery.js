@@ -1,17 +1,15 @@
 $(function () {
   // DatePicker
-  $( function() {
-    $( "#datepicker" ).datepicker({
-      dateFormat: "yy年mm月dd日",
-      minDate: new Date(2020, 1 - 1, 1),
-      maxDate: new Date(2025, 12 - 1, 31),
-    });
-    $( "#datepicker2" ).datepicker({
-      dateFormat: "yy年mm月dd日",
-      minDate: new Date(2020, 1 - 1, 1),
-      maxDate: new Date(2025, 12 - 1, 31),
-    });
-  } );
+  $( "#datepicker" ).datepicker({
+    dateFormat: "yy年mm月dd日",
+    minDate: new Date(2020, 1 - 1, 1),
+    maxDate: new Date(2025, 12 - 1, 31),
+  });
+  $( "#datepicker2" ).datepicker({
+    dateFormat: "yy年mm月dd日",
+    minDate: new Date(2020, 1 - 1, 1),
+    maxDate: new Date(2025, 12 - 1, 31),
+  });
   // DatePicker
 
   // ここから検索窓トグル

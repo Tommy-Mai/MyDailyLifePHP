@@ -32,7 +32,6 @@ class RegisterController extends Controller
      * @var string
      */
     protected $redirectTo = '/users';
-    // ↑'/users' URL要編集！！！！！！！！！！！！！！！！！！！！
     // protected $redirectTo = RouteServiceProvider::HOME;
 
     /**
@@ -76,14 +75,6 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
-
-            'last_login_at' => Carbon::now(),
-            'last_logout_at' => null,
-            'login_count' => 1,
-            // ↑要編集！！！！！！！！！！！！！！！！！！！！
-            'last_activity_at' => Carbon::now(),
-            'logged_in' => false,
-            // ↑要編集！！！！！！！！！！！！！！！！！！！！
         ]);
     }
 }

@@ -23,8 +23,6 @@ Route::group(['middleware' => 'auth'], function() {
 // 食事タグ関連
   # タグ一覧ページ
   Route::get('/meal_tags', 'App\Http\Controllers\MealTagController@index')->name('meal_tags.index');
-  # タグ毎のタスク一覧ページ！！！！！！
-  // Route::get('/meal_tags/{id}', 'App\Http\Controllers\MealTagController@show')->name('meal_tags.show');
 
 // 食事タスク関連
   # タスク作成ページ
@@ -55,8 +53,6 @@ Route::group(['middleware' => 'auth'], function() {
   Route::post('/task_tags/{id}/edit', 'App\Http\Controllers\TaskTagController@edit')->name('task_tags.edit');
   # タグ削除
   Route::delete('/task_tags/{id}', 'App\Http\Controllers\TaskTagController@delete')->name('task_tags.delete');
-  # タグ毎のタスク一覧ページ！！！！！
-  // Route::get('/meal_tags/{id}', 'App\Http\Controllers\MealTagController@show')->name('meal_tags.show');
 
 // その他タスク関連
   # タスク作成ページ
@@ -78,6 +74,11 @@ Route::group(['middleware' => 'auth'], function() {
   Route::post('/tasks/{task_id}/comments/create', 'App\Http\Controllers\TaskCommentController@create')->name('task_comments.create');
   # コメント削除
   Route::delete('/task_tasks/{task_id}/comments/{id}', 'App\Http\Controllers\TaskCommentController@delete')->name('task_comments.delete');
+
+  // カレンダー
+Route::get('/calendar/month', 'App\Http\Controllers\CalendarController@month')->name('calendar.month');
+Route::get('/calendar/day/meal', 'App\Http\Controllers\CalendarController@dayMeal')->name('calendar.day_meal');
+Route::get('/calendar/day/other', 'App\Http\Controllers\CalendarController@dayOther')->name('calendar.day_other');
 
 // ユーザー認証機能
 Auth::routes();

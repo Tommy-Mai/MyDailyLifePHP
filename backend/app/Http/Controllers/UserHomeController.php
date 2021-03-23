@@ -91,7 +91,7 @@ class UserHomeController extends Controller
         // return redirect()->route('user_home.meal_task')->with('update_password_success', 'パスワードを変更しました。');
     }
 
-    // ユーザー情報編集ページ表示
+    // ユーザーパスワード編集ページ表示
     public function showEditPasswordForm(Request $request){
         $user = Auth::user();
         return view('user_home/edit_password',[
@@ -99,11 +99,12 @@ class UserHomeController extends Controller
         ]);
     }
 
-    // ユーザー情報更新
+    // ユーザーパスワード更新
     public function editPassword(EditUserPassword $request){
         $user = Auth::user();
 
         $user->password = bcrypt($request->get('new_password'));
+        Auth::logoutOtherDevices($request->get('new_password'));
 
         // ユーザー情報保存
         $user->save();
