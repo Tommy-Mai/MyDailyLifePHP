@@ -43,6 +43,27 @@ $(function () {
     };
   });
 
+  // ここからメモ作成・編集モーダル
+  $('.modal-open-btn-memo').on("click",function() {
+    let target = $(this).attr('data-type');
+    if(target == '@create'){
+      $("#edit-modal").addClass('modal-hide');
+      $("#create-modal").removeClass('modal-hide');
+    } else if(target == '@edit'){
+      $("#edit-modal").removeClass('modal-hide');
+      $("#create-modal").addClass('modal-hide');
+
+      let memoId = $(this).attr('data-id');
+      $("#edit-modal-form-memo").attr("action", `/users/memo/${memoId}/edit`)
+
+      let memoName = $(this).attr('data-name');
+      $("#edit-modal-name").attr("value", `${memoName}`)
+
+      let memoDescription = $(this).attr('data-description');
+      $("#edit-modal-description").attr("value", `${memoDescription}`)
+    };
+  });
+
   // ここからコメント投稿欄 ファイル選択中はコメント欄ブロック
   $('#comment_image').on('change',function(){
     // ファイルが選択されているかどうかで分岐

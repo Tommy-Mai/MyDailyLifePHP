@@ -29,7 +29,7 @@ class TaskTagController extends Controller
     }
 
 /**
- * GET /task_tags/create
+ * POST /task_tags/create
  */
     public function create(CreateTag $request)
     {
@@ -45,7 +45,7 @@ class TaskTagController extends Controller
     }
 
 /**
- * GET /task_tags/{id}/edit
+ * POST /task_tags/{id}/edit
  */
     public function edit(int $id, EditTag $request)
     {
@@ -57,6 +57,8 @@ class TaskTagController extends Controller
         // インスタンスの状態をデータベースに書き込む
         // ユーザーに紐付けて保存
         Auth::user()->task_tags()->save($tag);
+
+        // その他タグ一覧ページに戻る
         return redirect('/task_tags');
     }
 

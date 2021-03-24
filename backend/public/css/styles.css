@@ -121,6 +121,51 @@ a.my-navbar-brand:not([href]):not([tabindex]), a.my-navbar-brand:not([href]):not
 }
 /* ----ここまでヘッダー---- */
 
+/* ----ここからサブヘッダーー---- */
+#sub-header {
+  height: 40px;
+  position: absolute;
+  top: 68px;
+  /* width: 100%; */
+  text-align: center;
+  background-color: #ddebf1;
+  line-height: 40px;
+}
+
+.sub-header_container {
+
+  margin: 0 auto;
+}
+
+#sub-header ul {
+  margin: 0;
+}
+
+#sub-header li {
+  font-size: 13px;
+}
+
+#sub-header li a {
+  color: #8899a6;
+}
+
+#sub-header li a:hover {
+  color: #243750;
+  text-decoration: none;
+}
+
+.sub-header-items {
+  border-top: 2px dashed #ddebf1;
+  margin-top: 10px;
+  padding-top: 5px;
+  padding-left: 10px;
+  margin-left: -10px;
+}
+.sub-header-items a {
+  font-size: 12px;
+}
+/* ----ここまでサブヘッダー---- */
+
 /* ----ここからフッター---- */
 .footer {
   position: absolute;
@@ -164,6 +209,16 @@ button.delete-btn {
   outline: none;
   padding: 0;
   appearance: none;
+}
+
+h3.cannot-delete {
+  color: #721c24;
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+}
+
+i.user-page-icon {
+  font-size: 20px;
 }
 
 /* -----タスク表示関連-----*/
@@ -702,7 +757,6 @@ div.row.user-info-items {
   overflow: hidden;
   box-shadow: 0 2px 6px #c1ced7;
   border-color: transparent;
-  /* position: relative; */
 }
 
 .panel-heading.home-create-tab a {
@@ -714,6 +768,45 @@ div.row.user-info-items {
 .panel-heading.home-create-tab a:hover {
   color: #243750;
   text-decoration: none;
+}
+
+/* メモ関連 */
+.memo-container {
+  border: 1px solid #c4d9e2;
+}
+.memo-name {
+  height: 50px;
+}
+
+.memo-name p {
+  margin: 0;
+  line-height: 50px;
+  font-size: 20px;
+  color: #fff;
+}
+
+.memo-description p {
+  margin: 0;
+  font-size: 20px;
+}
+
+p.modal-open-btn-memo {
+  color: #8899a6;
+}
+
+p.modal-open-btn-memo:hover {
+  color: #243750;
+}
+
+div.memo-btn {
+  margin-bottom: 10px;
+}
+
+p.memo-create {
+  margin: 0;
+  color: #8899a6;
+  font-size: 26px;
+  font-weight: 500;
 }
 
 /* モーダル */
@@ -821,4 +914,19 @@ div.calendar-container a:hover {
 .task-count a.col-xs-12 {
   font-size: 1.4vh;
   padding: 0;
+}
+
+  /* 日別カレンダー */
+  /* 日付表示 */
+.header-today {
+  margin: 10px 0;
+}
+
+.header-today a {
+  color: #8899a6;
+}
+
+.header-today a:hover {
+  color: #243750;
+  text-decoration: none;
 }

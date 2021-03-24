@@ -8,7 +8,10 @@
   <li class="nav-item col-xs-3 active">
     <a href="/users/other" class="container-tabs">その他</a>
   </li>
-  <li class="nav-item col-xs-3 col-xs-offset-3">
+  <li class="nav-item col-xs-3">
+    <a href="/users/memo" class="container-tabs">メモ</a>
+  </li>
+  <li class="nav-item col-xs-3">
     <i class="fas fa-search-plus" id="search-toggle-btn"></i>
   </li>
 </ul>

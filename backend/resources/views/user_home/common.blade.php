@@ -18,11 +18,13 @@
             </div>
           </div>
         </div>
-        <!-- ユーザー情報表示 -->
+        <!-- ここまでユーザー情報表示 -->
+
         <nav class="panel panel-default">
           <div class="panel-heading">
             @yield('active-tab')
           </div>
+
           <!-- 検索窓 -->
           <div class="search-container" id="search-toggle-menu">
             @if($path == "users/other")
@@ -59,8 +61,10 @@
               </div>
             </form>
           </div>
-          <!-- 検索窓 -->
+          <!-- ここまで検索窓 -->
+
           @yield('home-create-tab')
+
           <div class="list-group">
             @foreach($tasks as $task)
               <div class="task-index-item row">

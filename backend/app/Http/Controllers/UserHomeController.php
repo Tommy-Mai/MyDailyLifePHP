@@ -266,4 +266,18 @@ class UserHomeController extends Controller
             'path' => $request->path(),
         ]);
     }
+
+// メモ一覧表示
+    public function memo(Request $request)
+    {
+        $user = Auth::user();
+        $memos = $user->memos()->get();
+    
+    // Viewを表示
+    return view('user_home/memo', [
+        'user' => $user,
+        'memos' => $memos,
+        'path' => $request->path(),
+    ]);
+}
 }

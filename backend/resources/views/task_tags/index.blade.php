@@ -24,6 +24,8 @@
           </div>
         </form>
       </div>
+
+      <!-- ここから編集フォーム -->
       <div id="edit-modal" class="modal-hide">
         <div class="modal-header panel-heading form-title">
           <div id="editModalLabel">タグ編集</div>
@@ -31,6 +33,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
+        <!-- 以下のformのアクションはjQueryで配置 -->
         <form method="POST" class="form-items" id="edit-modal-form">
           <div class="modal-body">
             @csrf

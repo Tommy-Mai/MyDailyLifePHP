@@ -23,17 +23,40 @@
       </button>
       <div class="collapse navbar-collapse justify-content-end" id="navbar7">
         <ul class="navbar-nav ml-auto" id="my-navbar-nav">
-          @if(Auth::check())
-              <li class="nav-item my-navbar-item">
-                  <a class="nav-link" href="/users">ようこそ, {{ Auth::user()->name }}さん</a>
-              </li>
-              <li class="nav-item my-navbar-item">
-                <a class="nav-link" href="" id="logout">ログアウト</a>
-                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                  @csrf
-                </form>
-              </li>
-        @else
+          @if(Auth::check() && Auth::user()->admin && Auth::user()->protected)
+            <li class="nav-item my-navbar-item">
+                <a class="nav-link d-none d-md-block" href="/users">
+                  <i class="fas fa-user-circle user-page-icon"></i>
+                </a>
+                <a class="nav-link d-block d-md-none" href="/users">
+                  {{ Auth::user()->name }}
+                </a>
+            </li>
+            <li class="nav-item my-navbar-item">
+                <a class="nav-link" href="/admin/users_index">ユーザー管理</a>
+            </li>
+            <li class="nav-item my-navbar-item">
+              <a class="nav-link" href="" id="logout">ログアウト</a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
+            </li>
+          @elseif(Auth::check())
+          <li class="nav-item my-navbar-item">
+                <a class="nav-link d-none d-md-block" href="/users">
+                  <i class="fas fa-user-circle user-page-icon"></i>
+                </a>
+                <a class="nav-link d-block d-md-none" href="/users">
+                  {{ Auth::user()->name }}
+                </a>
+            </li>
+            <li class="nav-item my-navbar-item">
+              <a class="nav-link" href="" id="logout">ログアウト</a>
+              <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                @csrf
+              </form>
+            </li>
+          @else
             <li class="nav-item my-navbar-item">
               <a class="nav-link" href="{{ route('login') }}">ログイン</a>
             </li>
@@ -41,10 +64,30 @@
               <a class="nav-link" href="{{ route('register') }}">新規登録</a>
             </li>
           @endif
+          @if(Auth::check())
+            <li class="nav-item my-navbar-item d-block d-md-none sub-header-items">
+              <a href="/calendar/day/meal" class="nav-link col-xs-3">今日のタスク</a>
+              <a href="/calendar/month" class="nav-link col-xs-3 col-xs-offset-1">カレンダー</a>
+              <a href="/meal_tags" class="nav-link col-xs-3 col-xs-offset-1">タグ一覧</a>
+            </li>
+          @endif
         </ul>
       </div>
     </nav>
   </header>
+
+  @if(Auth::check())
+  <div id="sub-header" class="col-sm-12 d-none d-md-block">
+    <div class="sub-header_container">
+      <ul>
+        <li><a href="/calendar/day/meal" class="col-sm-2 col-xs-offset-3">今日のタスク</a></li>
+        <li><a href="/calendar/month" class="col-sm-2">カレンダー</a></li>
+        <li><a href="/meal_tags" class="col-sm-2">タグ一覧</a></li>
+      </ul>
+    </div>
+  </div>
+  @endif
+
   <main>
     <div class="container">
       @yield('content')

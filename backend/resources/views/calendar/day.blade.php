@@ -4,6 +4,11 @@
 
 @section('content')
   <div class="row">
+
+  <div class="col-xs-12 header-today">
+    @yield('header-today')
+  </div>  
+
     <div class="col col-xs-12 main-container">
 
         <nav class="panel panel-default">

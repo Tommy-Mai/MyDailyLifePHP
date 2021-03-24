@@ -22,6 +22,7 @@
           <a href="/calendar/month?y={{$addY}}&&m={{$addM}}">&gt;</a>
         </div>
       </div>
+
       <table class="table table-striped">
         <thead>
           <tr>

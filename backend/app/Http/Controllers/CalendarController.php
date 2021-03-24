@@ -76,10 +76,20 @@ class CalendarController extends Controller
         // // カレンダー表示月を決定
         $date = $request->date;
         if(!empty($date)){
+            // $dateの加工前に昨日・明日を作成
+            $sub_date = Carbon::createFromDate($date)->subDay()->format('Y-m-d');
+            $add_date = Carbon::createFromDate($date)->addDay()->format('Y-m-d');
             $date = Carbon::createFromDate($date);
         }else{
             $date = Carbon::createFromDate();
+            $sub_date = Carbon::createFromDate()->subDay()->format('Y-m-d');
+            $add_date = Carbon::createFromDate()->addDay()->format('Y-m-d');
         }
+
+        $week = array( "日", "月", "火", "水", "木", "金", "土" );
+        $day = date('w', strtotime($date));
+        $today_date = $date;
+        $today_date = $today_date->format('Y年m月d日')."（".$week[$day]."）";
 
         $tasks = $user->meal_tasks()->whereDate('date', $date)->get();
 
@@ -87,6 +97,9 @@ class CalendarController extends Controller
             'tasks' => $tasks,
             'path' => $request->path(),
             'date' => date("Y-m-d", strtotime($date)),
+            'sub_date' => $sub_date,
+            'add_date' => $add_date,
+            'today_date' => $today_date,
         ]);
     }
 
@@ -98,18 +111,31 @@ class CalendarController extends Controller
         // // カレンダー表示月を決定
         $date = $request->date;
         if(!empty($date)){
+            // $dateの加工前に昨日・明日を作成
+            $sub_date = Carbon::createFromDate($date)->subDay()->format('Y-m-d');
+            $add_date = Carbon::createFromDate($date)->addDay()->format('Y-m-d');
             $date = Carbon::createFromDate($date);
         }else{
             $date = Carbon::createFromDate();
+            $sub_date = Carbon::createFromDate()->subDay()->format('Y-m-d');
+            $add_date = Carbon::createFromDate()->addDay()->format('Y-m-d');
         }
+
+        $week = array( "日", "月", "火", "水", "木", "金", "土" );
+        $day = date('w', strtotime($date));
+        $today_date = $date;
+        $today_date = $today_date->format('Y年m月d日')."（".$week[$day]."）";
 
         $tasks = $user->tasks()->whereDate('date', $date)->get();
 
         return view('calendar/day_other',[
+            'tags' => $tags,
             'tasks' => $tasks,
             'path' => $request->path(),
             'date' => date("Y-m-d", strtotime($date)),
-            'tags' => $tags,
+            'sub_date' => $sub_date,
+            'add_date' => $add_date,
+            'today_date' => $today_date,
         ]);
     }
 }

@@ -2,15 +2,26 @@
 
 use Illuminate\Support\Facades\Route;
 
+// ホーム画面
+Route::get('/', 'App\Http\Controllers\HomeController@home')->name('home');
+
 // ログイン時のみアクセス可能な画面グループ
 Route::group(['middleware' => 'auth'], function() {
 // ユーザーページ
   # ユーザー 食事タスク
-  Route::get('/users', 'App\Http\Controllers\UserHomeController@meal_task')->name('user_home
-  .meal_task');
+  Route::get('/users', 'App\Http\Controllers\UserHomeController@meal_task')->name('user_home.meal_task');
   # ユーザー その他タスク
-  Route::get('/users/other', 'App\Http\Controllers\UserHomeController@task')->name('user_home
-  .task');
+  Route::get('/users/other', 'App\Http\Controllers\UserHomeController@task')->name('user_home.task');
+  // ユーザー メモ
+  # メモ一覧
+  Route::get('/users/memo', 'App\Http\Controllers\UserHomeController@memo')->name('user_home.memo');
+  # メモ作成
+  Route::post('/users/memo/create', 'App\Http\Controllers\MemoController@create')->name('memo.create');
+  # メモ編集
+  Route::post('/users/memo/{id}/edit', 'App\Http\Controllers\MemoController@edit')->name('memo.edit');
+  # メモ削除
+  Route::delete('/users/memo/{id}', 'App\Http\Controllers\MemoController@delete')->name('memo.delete');
+
   # ユーザー情報編集ページ
   Route::get('/users/edit', 'App\Http\Controllers\UserHomeController@showEditForm')->name('user_home.edit');
   # ユーザー情報編集 Update(edit)
@@ -67,7 +78,6 @@ Route::group(['middleware' => 'auth'], function() {
   Route::delete('/tasks/{id}', 'App\Http\Controllers\TaskController@delete')->name('tasks.delete');
   # タスク詳細ページ
   Route::get('/tasks/{id}', 'App\Http\Controllers\TaskController@show')->name('tasks.show');
-});
 
 // その他タスク コメント関連
   # コメント作成処理 Create
@@ -76,14 +86,17 @@ Route::group(['middleware' => 'auth'], function() {
   Route::delete('/task_tasks/{task_id}/comments/{id}', 'App\Http\Controllers\TaskCommentController@delete')->name('task_comments.delete');
 
   // カレンダー
-Route::get('/calendar/month', 'App\Http\Controllers\CalendarController@month')->name('calendar.month');
-Route::get('/calendar/day/meal', 'App\Http\Controllers\CalendarController@dayMeal')->name('calendar.day_meal');
-Route::get('/calendar/day/other', 'App\Http\Controllers\CalendarController@dayOther')->name('calendar.day_other');
+  Route::get('/calendar/month', 'App\Http\Controllers\CalendarController@month')->name('calendar.month');
+  Route::get('/calendar/day/meal', 'App\Http\Controllers\CalendarController@dayMeal')->name('calendar.day_meal');
+  Route::get('/calendar/day/other', 'App\Http\Controllers\CalendarController@dayOther')->name('calendar.day_other');
+
+// 管理者画面
+  Route::get('/admin/users_index', 'App\Http\Controllers\AdminUserController@usersIndex')->name('admin.users_index');
+// 管理者画面
+  Route::delete('/admin/{id}/users_delete', 'App\Http\Controllers\AdminUserController@delete')->name('admin.users_delete');
+});
 
 // ユーザー認証機能
 Auth::routes();
-
-// ホーム画面
-Route::get('/', 'App\Http\Controllers\HomeController@index')->name('home');
 
 // Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
