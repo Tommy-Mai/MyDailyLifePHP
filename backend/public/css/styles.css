@@ -229,6 +229,15 @@ i.user-page-icon {
   margin-bottom: 15px;
 }
 
+.contact-info {
+  margin: 10px 0;
+}
+
+.contact-info p{
+  margin-bottom: 10px;
+  color: #243750;
+}
+
   /* ページトップボタン */
 #page-top_btn {
   color: rgba(49, 62, 122,0.8);
@@ -910,6 +919,7 @@ div.calendar-container a:hover {
   border-right: 1px solid #c4d9e2;
   border-collapse: collapse;
   text-align: center;
+  color: #243750;
 }
 
 .my-month-calendar td {
@@ -919,13 +929,14 @@ div.calendar-container a:hover {
   border-collapse: collapse;
   height: 100px;
   padding: 6px;
+  color: #243750;
 }
 
-.saturday {
+.saturday, th.saturday {
   color: #a3d9ed;
 }
 
-.sunday {
+.sunday, th.sunday {
   color: #f18f65;
 }
 

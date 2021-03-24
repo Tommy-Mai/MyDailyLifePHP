@@ -12,6 +12,7 @@ use App\Traits\CommonMethod;
 
 use App\Http\Requests\CreateTask;
 use App\Http\Requests\EditTask;
+use Illuminate\Support\Facades\Storage;
 
 class TaskController extends Controller
 {
@@ -107,6 +108,14 @@ class TaskController extends Controller
         $task = Auth::user()->tasks()->find($id);
         if(!empty($task)){
             if($task->protected == false){
+                $comments = $task->task_comments()->get();
+                foreach($comments as $comment){
+                    if(!empty($comment->image)){
+                        $img = $comment->image;
+                        $path = "public/comments/{$img}";
+                        Storage::disk('local')->delete($path);
+                    }
+                }
                 Task::destroy($id);
                 return redirect('/users/other');
             }else{

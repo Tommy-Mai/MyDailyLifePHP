@@ -12,6 +12,7 @@ use App\Traits\CommonMethod;
 
 use App\Http\Requests\CreateTask;
 use App\Http\Requests\EditTask;
+use Illuminate\Support\Facades\Storage;
 
 class MealTaskController extends Controller
 {
@@ -107,6 +108,14 @@ class MealTaskController extends Controller
         $task = Auth::user()->meal_tasks()->find($id);
         if(!empty($task)){
             if($task->protected == false){
+                $comments = $task->meal_comments()->get();
+                foreach($comments as $comment){
+                    if(!empty($comment->image)){
+                        $img = $comment->image;
+                        $path = "public/comments/{$img}";
+                        Storage::disk('local')->delete($path);
+                    }
+                }
                 MealTask::destroy($id);
                 return redirect('/users');
             }else{

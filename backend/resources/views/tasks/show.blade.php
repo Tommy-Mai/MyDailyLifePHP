@@ -12,9 +12,9 @@
               <div class="task-index-item row task-show-item">
                 <div class="col-sm-4 task-index-tag">
                   @if(preg_match("#meal_tasks/[0-9]{1,}#", $path))
-                    <a href="#">{{$task->getMealTagName()}}</a>
+                    <a href="/users?tag_id={{$task->tag_id}}">{{$task->getMealTagName()}}</a>
                   @elseif(preg_match("#tasks/[0-9]{1,}#", $path))
-                    <a href="#">{{$task->getTaskTagName()}}</a>
+                    <a href="/users/other?tag_id={{$task->tag_id}}">{{$task->getTaskTagName()}}</a>
                   @endif
                 </div>
                 <div class="task-show-container">
@@ -26,7 +26,11 @@
                   </div>
                 </div>
                 <div class="task-show-bottom">
-                  <a href="#" class="col-xs-3 task-show-date">{{$task->getFormatDate()}}</a>
+                  @if(preg_match("#meal_tasks/[0-9]{1,}#", $path))
+                    <a href="/calendar/day/meal?date={{$task->getFormatDateHyphen()}}" class="col-xs-3 task-show-date">{{$task->getFormatDate()}}</a>
+                  @elseif(preg_match("#tasks/[0-9]{1,}#", $path))
+                    <a href="/calendar/day/other?date={{$task->getFormatDateHyphen()}}" class="col-xs-3 task-show-date">{{$task->getFormatDate()}}</a>
+                  @endif
                   <p class="col-xs-3"><i class="far fa-clock"></i>{{$task->getFormatTime()}}</P>
                   <p class="col-xs-3"><i class="fa fa-user"></i>{{$task->with_whom}}</P>
                   <p class="col-xs-3"><i class="fa fa-map-pin"></i>{{$task->where}}</P>

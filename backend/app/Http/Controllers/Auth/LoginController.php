@@ -7,6 +7,14 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 
+use App\Models\MealTag;
+use App\Models\MealTask;
+use App\Models\MealComment;
+use App\Models\TaskTag;
+use App\Models\Task;
+use App\Models\TaskComment;
+use Illuminate\Support\Facades\Storage;
+
 class LoginController extends Controller
 {
     /*

@@ -51,8 +51,8 @@ class MealCommentController extends Controller
             $fileName = "";
         }
 
-        if(Auth::user()->tasks()->find($task_id)->exists()){
-            $task = Auth::user()->tasks()->find($task_id);
+        if(Auth::user()->meal_tasks()->find($task_id)->exists()){
+            $task = Auth::user()->meal_tasks()->find($task_id);
             $comment = new MealComment();
 
             $comment->task_id = $task->id;

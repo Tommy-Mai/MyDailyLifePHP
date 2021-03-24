@@ -117,6 +117,7 @@
           </div>
           <div class="col-xs-4">
             <h3>サイト情報</h3>
+            <a href="/contact">お問い合わせ</a>
             <a href="/policy">利用規約</a>
             <a href="/privacy_policy">プライバシーポリシー</a>
           </div>
