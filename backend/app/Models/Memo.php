@@ -9,6 +9,11 @@ class Memo extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+    ];
+
 // リーレーション---
     public function user(){
         return $this->belongsTo('App\Models\User');

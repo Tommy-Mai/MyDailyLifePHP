@@ -78,33 +78,45 @@ class MealTaskController extends Controller
     {
         $task = Auth::user()->meal_tasks()->find($id);
 
-        $task->name = $request->name;
-        $task->description = $request->description;
-        $task->tag_id = $request->tag_id;
-        $task->with_whom = $request->with_whom;
-        $task->where = $request->where;
-        // 入力値をdate型に変換
-        $date = str_replace("年","-",$request->date);
-        $date = str_replace("月","-",$date);
-        $date = str_replace("日","",$date);
-        $task->date = date("Y-m-d", strtotime($date));
-        $task->time = date("H:i:00", strtotime($request->time));
-        // インスタンスの状態をデータベースに書き込む
-        // ユーザーに紐付けて保存
-        Auth::user()->meal_tasks()->save($task);
+        if($task->protected == false){
+            $task->name = $request->name;
+            $task->description = $request->description;
+            $task->tag_id = $request->tag_id;
+            $task->with_whom = $request->with_whom;
+            $task->where = $request->where;
+            // 入力値をdate型に変換
+            $date = str_replace("年","-",$request->date);
+            $date = str_replace("月","-",$date);
+            $date = str_replace("日","",$date);
+            $task->date = date("Y-m-d", strtotime($date));
+            $task->time = date("H:i:00", strtotime($request->time));
+            // インスタンスの状態をデータベースに書き込む
+            // ユーザーに紐付けて保存
+            Auth::user()->meal_tasks()->save($task);
 
-        // タスク詳細画面へ
-        return redirect()->route('meal_tasks.show', ['id' => $id]);
+            return redirect()->route('meal_tasks.show', ['id' => $id]);
+        }else{
+            // タスク詳細画面へ
+            return redirect()->route('meal_tasks.show', ['id' => $id])
+            ->with('message', '保護されているコンテンツです。');
+        }
     }
 
     public function delete(int $id)
     {
-        if(Auth::user()->meal_tasks()->find($id)->exists()){
-            MealTask::destroy($id);
+        $task = Auth::user()->meal_tasks()->find($id);
+        if(!empty($task)){
+            if($task->protected == false){
+                MealTask::destroy($id);
+                return redirect('/users');
+            }else{
+                // ユーザー 食事タスクページへ
+                return redirect()->route('meal_tasks.show', ['id' => $id])
+                ->with('message', '保護されているコンテンツです。');
+            }
         }
-
-        // ユーザー 食事タスクページへ
-        return redirect('/users');
+        return redirect()->route('meal_tasks.show', ['id' => $id])
+        ->with('message', 'リクエストの実行に失敗しました。');
     }
 
     public function show(int $id, Request $request)

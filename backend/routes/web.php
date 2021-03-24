@@ -2,8 +2,18 @@
 
 use Illuminate\Support\Facades\Route;
 
-// ホーム画面
+// ホーム画面（未認証ユーザーのみアクセス可能）
 Route::get('/', 'App\Http\Controllers\HomeController@home')->name('home');
+
+// 全てのユーザーがアクセス可能
+Route::get('/about', 'App\Http\Controllers\AboutWebsiteController@about')->name('home.about');
+Route::get('/policy', 'App\Http\Controllers\AboutWebsiteController@policy')->name('home.policy');
+Route::get('/privacy_policy', 'App\Http\Controllers\AboutWebsiteController@privacy_policy')->name('home.privacy_policy');
+Route::get('/faqs', 'App\Http\Controllers\AboutWebsiteController@faqs')->name('home.faqs');
+
+  // 問い合わせページ
+Route::get('/contact', 'App\Http\Controllers\AboutWebsiteController@contact')->name('contact');
+Route::post('/contact', 'App\Http\Controllers\AboutWebsiteController@sendContact');
 
 // ログイン時のみアクセス可能な画面グループ
 Route::group(['middleware' => 'auth'], function() {

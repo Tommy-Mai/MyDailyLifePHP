@@ -33,7 +33,7 @@ class RegisterController extends Controller
      */
     protected function redirectTo()
     {
-        return '/';
+        return '/users';
     }
     // protected $redirectTo = RouteServiceProvider::HOME;
 

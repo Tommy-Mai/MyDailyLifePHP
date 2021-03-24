@@ -13,6 +13,16 @@ class Task extends Model
 
     protected $dates = ['date','time'];
 
+    protected $fillable = [
+        'name',
+        'description',
+        'date',
+        'tag_id',
+        'with_whom',
+        'where',
+        'time',
+    ];
+
 // リーレーション---
     public function user(){
         return $this->belongsTo('App\Models\User');

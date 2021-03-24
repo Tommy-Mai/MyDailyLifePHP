@@ -176,6 +176,8 @@ return [
         // App\Providers\BroadcastServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        // Slack追加
+        App\Providers\SlackServiceProvider::class,
 
     ],
 
@@ -231,7 +233,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         // Intervention Image導入
         'Image' => Intervention\Image\Facades\Image::class,
-
+        // Slack追加
+        'Slack' => App\Services\Slack\Slack::class,
     ],
 
 ];

@@ -78,31 +78,45 @@ class TaskController extends Controller
     {
         $task = Auth::user()->tasks()->find($id);
 
-        $task->name = $request->name;
-        $task->description = $request->description;
-        $task->tag_id = $request->tag_id;
-        $task->with_whom = $request->with_whom;
-        $task->where = $request->where;
-        // 入力値をdate型に変換
-        $date = str_replace("年","-",$request->date);
-        $date = str_replace("月","-",$date);
-        $date = str_replace("日","",$date);
-        $task->date = date("Y-m-d", strtotime($date));
-        $task->time = date("H:i:00", strtotime($request->time));
-        // インスタンスの状態をデータベースに書き込む
-        // ユーザーに紐付けて保存
-        Auth::user()->tasks()->save($task);
+        if($task->protected == false){
+            $task->name = $request->name;
+            $task->description = $request->description;
+            $task->tag_id = $request->tag_id;
+            $task->with_whom = $request->with_whom;
+            $task->where = $request->where;
+            // 入力値をdate型に変換
+            $date = str_replace("年","-",$request->date);
+            $date = str_replace("月","-",$date);
+            $date = str_replace("日","",$date);
+            $task->date = date("Y-m-d", strtotime($date));
+            $task->time = date("H:i:00", strtotime($request->time));
+            // インスタンスの状態をデータベースに書き込む
+            // ユーザーに紐付けて保存
+            Auth::user()->tasks()->save($task);
 
-        // タスク詳細画面へリダイレクト
-        return redirect()->route('tasks.show', ['id' => $id]);
+            return redirect()->route('tasks.show', ['id' => $id]);
+        }else{
+            // タスク詳細画面へリダイレクト
+            return redirect()->route('tasks.show', ['id' => $id])
+            ->with('message', '保護されているコンテンツです。');
+        }
     }
 
     public function delete(int $id)
     {
-        Task::destroy($id);
-
-        // ユーザー その他タスクページへ遷移
-        return redirect('/users/other');
+        $task = Auth::user()->tasks()->find($id);
+        if(!empty($task)){
+            if($task->protected == false){
+                Task::destroy($id);
+                return redirect('/users/other');
+            }else{
+                // ユーザー その他タスクページへ遷移
+                return redirect()->route('tasks.show', ['id' => $id])
+                ->with('message', '保護されているコンテンツです。');
+            }
+        }
+        return redirect()->route('tasks.show', ['id' => $id])
+        ->with('message', 'リクエストの実行に失敗しました。');
     }
 
     public function show(int $id, Request $request)

@@ -51,15 +51,19 @@ class TaskTagController extends Controller
     {
         $tag = Auth::user()->task_tags()->find($id);
 
-        // 要素に入力値を代入する
-        $tag->name = $request->name;
+        if($tag->protected == false){
+            // 要素に入力値を代入する
+            $tag->name = $request->name;
 
-        // インスタンスの状態をデータベースに書き込む
-        // ユーザーに紐付けて保存
-        Auth::user()->task_tags()->save($tag);
-
-        // その他タグ一覧ページに戻る
-        return redirect('/task_tags');
+            // インスタンスの状態をデータベースに書き込む
+            // ユーザーに紐付けて保存
+            Auth::user()->task_tags()->save($tag);
+            return redirect('/task_tags');
+        }else{
+            // その他タグ一覧ページに戻る
+            return redirect('/task_tags')
+            ->with('message', '保護されているコンテンツです。');
+        }
     }
 
 
@@ -68,11 +72,18 @@ class TaskTagController extends Controller
  */
     public function delete(int $id)
     {
-        if(Auth::user()->task_tags()->find($id)->exists()){
-            TaskTag::destroy($id);
+        $tag = Auth::user()->task_tags()->find($id);
+        if(!empty($tag)){
+            if($tag->protected == false){
+                TaskTag::destroy($id);
+                return redirect('/task_tags');
+            }else{
+                // その他タグ一覧ページへ遷移
+                return redirect('/task_tags')
+                ->with('message', '保護されているコンテンツです。');
+            }
         }
-
-        // その他タグ一覧ページへ遷移
-        return redirect('/task_tags');
+        return redirect('/task_tags')
+        ->with('message', 'リクエストの実行に失敗しました。');
     }
 }

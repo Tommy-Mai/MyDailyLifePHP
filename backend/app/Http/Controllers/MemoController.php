@@ -34,16 +34,20 @@ class MemoController extends Controller
     {
         $memo = Auth::user()->memos()->find($id);
 
-        // 要素に入力値を代入する
-        $memo->name = $request->name;
-        $memo->description = $request->description;
+        if($memo->protected == false){
+            // 要素に入力値を代入する
+            $memo->name = $request->name;
+            $memo->description = $request->description;
 
-        // インスタンスの状態をデータベースに書き込む
-        // ユーザーに紐付けて保存
-        Auth::user()->memos()->save($memo);
-
-        // メモ一覧ページに戻る
-        return redirect('/users/memo');
+            // インスタンスの状態をデータベースに書き込む
+            // ユーザーに紐付けて保存
+            Auth::user()->memos()->save($memo);
+            return redirect('/users/memo');
+        }else{
+            // メモ一覧ページに戻る
+            return redirect('/users/memo')
+            ->with('message', '保護されているコンテンツです。');
+        }
     }
 
 /**
@@ -51,12 +55,19 @@ class MemoController extends Controller
  */
     public function delete(int $id)
     {
-        if(Auth::user()->memos()->find($id)->exists()){
-            Memo::destroy($id);
+        $memo = Auth::user()->memos()->find($id);
+        if(!empty($memo)){
+            if($memo->protected == false){
+                Memo::destroy($id);
+                return redirect('/users/memo');
+            }else{
+                // メモ一覧ページへ遷移
+                return redirect('/users/memo')
+                ->with('message', '保護されているコンテンツです。');
+            }
         }
-
-        // メモ一覧ページへ遷移
-        return redirect('/users/memo');
+        return redirect('/users/memo')
+        ->with('message', 'リクエストの実行に失敗しました。');
     }
 
 }

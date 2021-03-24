@@ -16,71 +16,76 @@ class TaskCommentController extends Controller
 /**
  * POST /tasks/{task_id}/comments/create
  */
-public function create(int $task_id, CreateComment $request)
-{
-    if (!empty($request->image)) {
-        $file = $request->file('image');
+    public function create(int $task_id, CreateComment $request)
+    {
+        if (!empty($request->image)) {
+            $file = $request->file('image');
 
-        // リサイズ
-        $img = \Image::make($file);
-        $img->resize(350, null, function($constraint){
-            $constraint->upsize(); 
-            $constraint->aspectRatio();
-        })->encode('jpg');
-        $img->resize(null, 350, function($constraint){
-            $constraint->upsize(); 
-            $constraint->aspectRatio();
-        })->encode('jpg');
+            // リサイズ
+            $img = \Image::make($file);
+            $img->resize(350, null, function($constraint){
+                $constraint->upsize(); 
+                $constraint->aspectRatio();
+            })->encode('jpg');
+            $img->resize(null, 350, function($constraint){
+                $constraint->upsize(); 
+                $constraint->aspectRatio();
+            })->encode('jpg');
 
-        // calculate md5 hash of encoded image
-        $hash = md5($img->__toString());
-        $hash = time() . $hash;
+            // calculate md5 hash of encoded image
+            $hash = md5($img->__toString());
+            $hash = time() . $hash;
 
-        // use hash as a name
-        $path = "storage/comments/{$hash}.jpg";
+            // use hash as a name
+            $path = "storage/comments/{$hash}.jpg";
 
-        // save it locally to ~/public/storage/comments/{$hash}.jpg
-        $img->save(public_path($path));
+            // save it locally to ~/public/storage/comments/{$hash}.jpg
+            $img->save(public_path($path));
 
-        // $url = "/images/{$hash}.jpg"
-        $url = "/" . $path;
+            // $url = "/images/{$hash}.jpg"
+            $url = "/" . $path;
 
-        // 画像のファイル名をつけて保存
-        $fileName = "{$hash}.jpg";
-    } else {
-        $fileName = "";
-    }
-
-    if(Auth::user()->tasks()->find($task_id)->exists()){
-        $task = Auth::user()->tasks()->find($task_id);
-        $comment = new TaskComment();
-
-        $comment->task_id = $task->id;
-        $comment->comment = $request->comment;
-        $comment->image = $fileName;
-        Auth::user()->task_comments()->save($comment);
-
-        return redirect()->route('tasks.show', ['id' => $task_id]);
-    }else{
-        return false;
-    }
-}
-
-public function delete(int $task_id, int $id)
-{
-    $task = Auth::user()->tasks()->find($task_id);
-    if ($task->task_comments()->find($id)->exists()){
-        $comment = $task->task_comments()->find($id);
-        if(!empty($comment->image)){
-            $img = $comment->image;
-            $path = "public/comments/{$img}";
-            Storage::disk('local')->delete($path);
+            // 画像のファイル名をつけて保存
+            $fileName = "{$hash}.jpg";
+        } else {
+            $fileName = "";
         }
-        TaskComment::destroy($id);
+
+        if(Auth::user()->tasks()->find($task_id)->exists()){
+            $task = Auth::user()->tasks()->find($task_id);
+            $comment = new TaskComment();
+
+            $comment->task_id = $task->id;
+            $comment->comment = $request->comment;
+            $comment->image = $fileName;
+            Auth::user()->task_comments()->save($comment);
+
+            return redirect()->route('tasks.show', ['id' => $task_id]);
+        }else{
+            return false;
+        }
     }
 
-    // 食事タスク詳細ページへ
-    return redirect()->route('tasks.show', ['id' => $task_id]);
-}
-
+    public function delete(int $task_id, int $id)
+    {
+        $task = Auth::user()->tasks()->find($task_id);
+        if ($task->task_comments()->find($id)->exists()){
+            $comment = $task->task_comments()->find($id);
+            if($comment->protected == false){
+                if(!empty($comment->image)){
+                    $img = $comment->image;
+                    $path = "public/comments/{$img}";
+                    Storage::disk('local')->delete($path);
+                }
+                TaskComment::destroy($id);
+                return redirect()->route('tasks.show', ['id' => $task_id]);
+            }else{
+                // 食事タスク詳細ページへ
+                return redirect()->route('tasks.show', ['id' => $task_id])
+                ->with('message', '保護されているコンテンツです。');
+            }
+        }
+        return redirect()->route('tasks.show', ['id' => $task_id])
+        ->with('message', 'リクエストの実行に失敗しました。');
+    }
 }
