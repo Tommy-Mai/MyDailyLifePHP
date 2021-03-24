@@ -22,7 +22,7 @@ class MealTasksTableSeeder extends Seeder
                 'name' => "サンプルタスク".$num,
                 'description' => "サンプルタスク詳細".$num,
                 'date' => Carbon::now()->addDay($num),
-                'meal_tag_id' => $num,
+                'tag_id' => $num,
                 'user_id' => $user->id,
                 'with_whom' => "{$num}人",
                 'where' => "",

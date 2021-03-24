@@ -6,6 +6,7 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+// use Illuminate\Database\Eloquent\Model;
 
 class User extends Authenticatable
 {
@@ -20,6 +21,12 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'image',
+        'last_login_at',
+        'last_logout_at',
+        'login_count',
+        'last_activity_at',
+        'logged_in',
     ];
 
     /**
@@ -43,36 +50,36 @@ class User extends Authenticatable
 
     public function meal_tasks()
     {
-        return $this->hasMany('App\MealTask');
+        return $this->hasMany('App\Models\MealTask');
     }
 
     public function meal_comments()
     {
-        return $this->hasMany('\App\MealComment');
+        return $this->hasMany('App\Models\MealComment');
     }
 
     public function task_tags()
     {
-        return $this->hasMany('App\TaskTag');
+        return $this->hasMany('App\Models\TaskTag');
     }
 
     public function tasks()
     {
-        return $this->hasMany('App\Task');
+        return $this->hasMany('App\Models\Task');
     }
 
     public function task_comments()
     {
-        return $this->hasMany('\App\TaskComment');
+        return $this->hasMany('App\Models\TaskComment');
     }
 
     public function memos()
     {
-        return $this->hasMany('\App\Memo');
+        return $this->hasMany('App\Models\Memo');
     }
 
     public function histories()
     {
-        return $this->hasMany('\App\History');
+        return $this->hasMany('App\Models\History');
     }
 }

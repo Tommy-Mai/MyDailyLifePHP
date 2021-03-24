@@ -22,8 +22,6 @@ class UsersTableSeeder extends Seeder
             'created_at' => Carbon::now(),
             'updated_at' => Carbon::now(),
             'protected'=> true,
-            'last_login_at' => Carbon::now(),
-            'last_activity_at' => Carbon::now(),
         ]);
         DB::table('users')->insert([
             'name' => '管理者',
@@ -33,8 +31,6 @@ class UsersTableSeeder extends Seeder
             'updated_at' => Carbon::now(),
             'admin'=> true,
             'protected'=> true,
-            'last_login_at' => Carbon::now(),
-            'last_activity_at' => Carbon::now(),
         ]);
     }
 }

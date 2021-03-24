@@ -17,8 +17,8 @@ class CreateTaskTagsTable extends Migration
             $table->id();
             $table->string('name',30);
             $table->foreignId('user_id')
-                ->constrained('users')
-                ->onDelete('cascade');
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate();
             $table->boolean('protected')->default(false);
             $table->timestamps();
         });

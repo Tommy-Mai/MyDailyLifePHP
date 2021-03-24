@@ -6,3 +6,16 @@
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// FontAwesome
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+@import '~@fortawesome/fontawesome-free/scss/fontawesome';
+@import '~@fortawesome/fontawesome-free/scss/regular';
+@import '~@fortawesome/fontawesome-free/scss/solid';
+@import "node_modules/font-awesome-scss/scss/font-awesome.scss";
+
+// Tempus Dominus
+@import '~tempusdominus-bootstrap-4/src/sass/tempusdominus-bootstrap-4-build';

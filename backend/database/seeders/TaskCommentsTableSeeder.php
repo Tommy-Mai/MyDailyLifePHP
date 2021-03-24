@@ -17,7 +17,16 @@ class TaskCommentsTableSeeder extends Seeder
     {
         DB::table('task_comments')->insert([
             'comment' => 'テストコメント',
-            'image_exist' => false,
+            'image' => '',
+            'task_id'=> 1,
+            'user_id'=> 1,
+            'protected'=> false,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
+        DB::table('task_comments')->insert([
+            'comment' => '',
+            'image' => 'icon_penguin.jpg',
             'task_id'=> 1,
             'user_id'=> 1,
             'protected'=> false,
