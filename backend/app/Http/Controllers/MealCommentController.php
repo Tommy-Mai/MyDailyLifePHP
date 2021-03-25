@@ -51,8 +51,8 @@ class MealCommentController extends Controller
             $fileName = "";
         }
 
-        if(Auth::user()->tasks()->find($task_id)->exists()){
-            $task = Auth::user()->tasks()->find($task_id);
+        if(Auth::user()->meal_tasks()->find($task_id)->exists()){
+            $task = Auth::user()->meal_tasks()->find($task_id);
             $comment = new MealComment();
 
             $comment->task_id = $task->id;
@@ -71,16 +71,21 @@ class MealCommentController extends Controller
         $task = Auth::user()->meal_tasks()->find($task_id);
         if ($task->meal_comments()->find($id)->exists()){
             $comment = $task->meal_comments()->find($id);
-            if(!empty($comment->image)){
-                $img = $comment->image;
-                $path = "public/comments/{$img}";
-                Storage::disk('local')->delete($path);
+            if($comment->protected == false){
+                if(!empty($comment->image)){
+                    $img = $comment->image;
+                    $path = "public/comments/{$img}";
+                    Storage::disk('local')->delete($path);
+                }
+                MealComment::destroy($id);
+                return redirect()->route('meal_tasks.show', ['id' => $task_id]);
+            }else{
+                // 食事タスク詳細ページへ
+                return redirect()->route('meal_tasks.show', ['id' => $task_id])
+                ->with('message', '保護されているコンテンツです。');
             }
-            MealComment::destroy($id);
         }
-
-        // 食事タスク詳細ページへ
-        return redirect()->route('meal_tasks.show', ['id' => $task_id]);
+        return redirect()->route('meal_tasks.show', ['id' => $task_id])
+        ->with('message', 'リクエストの実行に失敗しました。');
     }
-
 }

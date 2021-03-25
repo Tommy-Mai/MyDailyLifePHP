@@ -26,13 +26,13 @@
                     <a href="{{ route('tasks.show', ['id' => $task->id]) }}">{{$task->name}}</a>
                     </div>
                   <div class="col-xs-4 task-index-tag">
-                    <a href="#">{{$task->getTaskTagName()}}</a>
+                    <a href="/users/other?tag_id={{$task->tag_id}}">{{$task->getTaskTagName()}}</a>
                   </div>
                   @else($path == "calendar/day/meal")
-                    <a href="{{ route('calendar.day_meal', ['id' => $task->id]) }}">{{$task->name}}</a>
+                    <a href="{{ route('meal_tasks.show', ['id' => $task->id]) }}">{{$task->name}}</a>
                     </div>
                   <div class="col-xs-4 task-index-tag">
-                    <a href="#">{{$task->getMealTagName()}}</a>
+                    <a href="/users?tag_id={{$task->tag_id}}">{{$task->getMealTagName()}}</a>
                   </div>
                   @endif
                 <div class="col-xs-4 col-xs-offset-8 task-index-datetime">

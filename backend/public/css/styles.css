@@ -196,6 +196,10 @@ a.my-navbar-brand:not([href]):not([tabindex]), a.my-navbar-brand:not([href]):not
 /* ----ここまでフッター---- */
 
 /* 共通 */
+.home-container {
+  margin-bottom: -100px;
+}
+
 .main-container.col.col-xs-12 {
   float: none;
   margin: 0 auto;
@@ -219,6 +223,33 @@ h3.cannot-delete {
 
 i.user-page-icon {
   font-size: 20px;
+}
+
+.contact-form-item{
+  margin-bottom: 15px;
+}
+
+.contact-info {
+  margin: 10px 0;
+}
+
+.contact-info p{
+  margin-bottom: 10px;
+  color: #243750;
+}
+
+  /* ページトップボタン */
+#page-top_btn {
+  color: rgba(49, 62, 122,0.8);
+  font-size: 45px;
+  z-index: 15;
+  position: fixed;
+  bottom: -50px;
+  right: 10px;
+  cursor: pointer;
+}
+#page-top_btn:hover {
+  color: rgb(49, 62, 122);
 }
 
 /* -----タスク表示関連-----*/
@@ -888,6 +919,7 @@ div.calendar-container a:hover {
   border-right: 1px solid #c4d9e2;
   border-collapse: collapse;
   text-align: center;
+  color: #243750;
 }
 
 .my-month-calendar td {
@@ -897,13 +929,14 @@ div.calendar-container a:hover {
   border-collapse: collapse;
   height: 100px;
   padding: 6px;
+  color: #243750;
 }
 
-.saturday {
+.saturday, th.saturday {
   color: #a3d9ed;
 }
 
-.sunday {
+.sunday, th.sunday {
   color: #f18f65;
 }
 
@@ -929,4 +962,293 @@ div.calendar-container a:hover {
 .header-today a:hover {
   color: #243750;
   text-decoration: none;
+}
+
+/* Topページ */
+.swiper-container {
+  text-align: center;
+  width: 100%;
+  background-color: #8fd3f5;
+  margin-top: -48px;
+}
+
+.swiper-wrapper {
+  width: 100%;
+  position: relative;
+}
+
+.swiper-wrapper img {
+  position: absolute;
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.swiper-wrapper .swiper-slide {
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  height: 54vw;
+  overflow: hidden;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.swiper-container img {
+  background-position: center center;
+  background-size: cover;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.top-about_MDL {
+  padding: 40px 0;
+  text-align: center;
+  background-color: #f4fbff;
+  color: #5aa1d8;
+}
+
+.top-about_MDL h3 {
+  font-weight: 600;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.top-about_btn a{
+  margin-top: 20px;
+  display: inline-block;
+  height: 40px;
+  line-height: 20px;
+  font-size: 16px;
+  padding: 10px 20px;
+  border-radius: 2px;
+  background-color: #8fd3f5;
+  color: #fff;
+  border-radius: .25rem;
+}
+
+.top-about_btn a:hover {
+  color: #fff;
+  box-shadow: none;
+  text-decoration: none;
+  background-color: #5aa1d8;
+}
+
+/* テストユーザーログイン関連 */
+.test-user_login {
+  display: block;
+  margin: 0 auto;
+  padding: 50px 0;
+  width: 100%;
+  background-color: #8fd3f5;
+  text-align: center;
+}
+
+.test-user_login p {
+  color: white;
+}
+
+.test-login_guide {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.test-login_notice {
+  width: 60%;
+  margin: 20px auto 0 ;
+  display: inline-block;
+}
+
+.test-login_notice p {
+  font-size: 12px;
+  text-align: left;
+}
+
+.test-login-btn {
+  background-color: #5aa1d8;
+}
+
+.test-login-btn:hover {
+  background-color: #4283b4;
+}
+
+div#test-login_btn.login-form-test-login {
+  margin-top: 10px;
+  width: 250px;
+  margin: 10px 0 0 auto;
+}
+
+/* aboutページ*/
+.about-container {
+  width: 100%;
+  margin: 0 auto;
+  margin-top: -48px;
+}
+
+.about-header {
+  padding: 20px 10%;
+  color: #f4fbff;
+  background-color: #5aa1d8;
+}
+
+.about-container h1 {
+  text-align: center;
+  font-weight: 500;
+  font-size: 48px;
+  line-height: 52px;
+  padding: 35px 0 25px;
+  text-shadow: 1px 2px 2px #4283b4;
+}
+
+.about-container h2 {
+  text-align: center;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 35px;
+  margin-bottom: 10px;
+}
+
+.about-container h5 {
+  text-align: center;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 20px;
+  margin-bottom: 30px;
+  color: #243750;
+}
+
+.about-content-block {
+  background-color: #fff;
+  padding: 20px 10%;
+  text-align: center;
+  margin-top: 30px;
+}
+
+.about-content {
+  margin-bottom: 50px;
+}
+
+.about-content-block h3 {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  color: #243750;
+  margin-bottom: 15px;
+}
+
+.about-content-block h4 {
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 55px;
+  color: #243750;
+  margin-bottom: 15px;
+}
+
+.about-content-block p {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 32px;
+  color: #8899a6;
+  margin-bottom: 10px;
+}
+
+.about-image_container img {
+  width: 100%;
+  height: 450px;
+  object-fit: cover;
+}
+
+/* FAQ */
+.faq-content {
+  padding: 10px 0;
+  border: 1px solid #c4d9e2;
+  border-collapse: collapse;
+}
+
+.question {
+  padding: 10px 20px;
+  border-bottom: 1px dotted #f4fbff;
+}
+
+.answer {
+  padding: 10px 20px;
+}
+
+.faqs-container h1 {
+  color: #fff;
+  background-color: #8899a6;
+  padding: 20px;
+  font-weight: 300;
+  font-size: 26px;
+  line-height: 41px;
+  margin-bottom: 0;
+}
+
+.faqs-container h3 {
+  color: #243750;
+  font-weight: 600;
+  font-size: 24px;
+}
+
+.faqs-container p {
+  color: #8899a6;
+  margin-top: 10px;
+}
+
+
+a.faq-link:hover {
+text-decoration: none;
+}
+
+/* 利用規約ページ */
+.policy-container {
+  width: 80%;
+  margin: 30px auto;
+}
+
+.policy-content {
+  margin-top: 40px;
+}
+
+.policy-content h1 {
+  text-align: center;
+  font-weight: 400;
+  font-size: 32px;
+  line-height: 54px;
+  color: #243750;
+  margin-bottom: 20px;
+}
+
+.policy-content h2, .policy-content h4 {
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 28px;
+  color: #8899a6;
+  margin-bottom: 40px;
+}
+
+.policy-content h3 {
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 32px;
+  color: #243750;
+  margin-bottom: 15px;
+}
+
+.policy-content p {
+  font-weight: 400;
+  font-size: 15px;
+  line-height: 26px;
+  color: #8899a6;
+  margin-bottom: 10px;
+}
+
+.policy-content a {
+  font-size: 16px;
+  color: #8fd3f5;
+}
+
+.policy-content a:hover {
+  color: #5aa1d8;
 }

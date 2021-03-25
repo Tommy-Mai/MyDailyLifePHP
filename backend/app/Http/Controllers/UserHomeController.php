@@ -36,59 +36,63 @@ class UserHomeController extends Controller
     // ユーザー情報更新
     public function edit(EditUser $request){
         $user = Auth::user();
-        if(!empty($request->name)){
-            $user->name = $request->name;
-        }
-        if(!empty($request->email)){
-            $user->email = $request->email;
-        }
-
-        // 画像処理
-        if (!empty($request->image)) {
-            $file = $request->file('image');
-    
-            // リサイズ
-            $img = \Image::make($file);
-            $img->resize(100, null, function($constraint){
-                $constraint->upsize(); 
-                $constraint->aspectRatio();
-            })->encode('jpg');
-            $img->resize(null, 100, function($constraint){
-                $constraint->upsize(); 
-                $constraint->aspectRatio();
-            })->encode('jpg');
-    
-            // calculate md5 hash of encoded image
-            $hash = md5($img->__toString());
-            $hash = time() . $hash;
-    
-            // use hash as a name
-            $path = "storage/profiles/{$hash}.jpg";
-    
-            // save it locally to ~/public/storage/profiles/{$hash}.jpg
-            $img->save(public_path($path));
-
-            // 既存のユーザーイメージを削除（デフォルト画像以外）
-            if($user->image != 'icon_penguin.jpg'){
-                $current_path = "public/profiles/{$user->image}";
-                Storage::disk('local')->delete($current_path);
+        if($user->protected == false){
+            if(!empty($request->name)){
+                $user->name = $request->name;
             }
-    
-            // $url = "/images/{$hash}.jpg"
-            $url = "/" . $path;
-    
-            // 画像のファイル名をつけて保存
-            $fileName = "{$hash}.jpg";
+            if(!empty($request->email)){
+                $user->email = $request->email;
+            }
 
-            // もし画像の入力があれば入力値を代入
-            $user->image = $fileName;
+            // 画像処理
+            if (!empty($request->image)) {
+                $file = $request->file('image');
+        
+                // リサイズ
+                $img = \Image::make($file);
+                $img->resize(100, null, function($constraint){
+                    $constraint->upsize(); 
+                    $constraint->aspectRatio();
+                })->encode('jpg');
+                $img->resize(null, 100, function($constraint){
+                    $constraint->upsize(); 
+                    $constraint->aspectRatio();
+                })->encode('jpg');
+        
+                // calculate md5 hash of encoded image
+                $hash = md5($img->__toString());
+                $hash = time() . $hash;
+        
+                // use hash as a name
+                $path = "storage/profiles/{$hash}.jpg";
+        
+                // save it locally to ~/public/storage/profiles/{$hash}.jpg
+                $img->save(public_path($path));
+
+                // 既存のユーザーイメージを削除（デフォルト画像以外）
+                if($user->image != 'icon_penguin.jpg'){
+                    $current_path = "public/profiles/{$user->image}";
+                    Storage::disk('local')->delete($current_path);
+                }
+        
+                // $url = "/images/{$hash}.jpg"
+                $url = "/" . $path;
+        
+                // 画像のファイル名をつけて保存
+                $fileName = "{$hash}.jpg";
+
+                // もし画像の入力があれば入力値を代入
+                $user->image = $fileName;
+            }
+
+            // ユーザー情報保存
+            $user->save();
+            return redirect('/users');
+        }else{
+            return redirect('/users')
+            ->with('message', '保護されているコンテンツです。');
+            // return redirect()->route('user_home.meal_task')->with('update_password_success', 'パスワードを変更しました。');
         }
-
-        // ユーザー情報保存
-        $user->save();
-
-        return redirect('/users');
-        // return redirect()->route('user_home.meal_task')->with('update_password_success', 'パスワードを変更しました。');
     }
 
     // ユーザーパスワード編集ページ表示
@@ -102,15 +106,17 @@ class UserHomeController extends Controller
     // ユーザーパスワード更新
     public function editPassword(EditUserPassword $request){
         $user = Auth::user();
+        if($user->protected == false){
+            $user->password = bcrypt($request->get('new_password'));
+            Auth::logoutOtherDevices($request->get('new_password'));
 
-        $user->password = bcrypt($request->get('new_password'));
-        Auth::logoutOtherDevices($request->get('new_password'));
-
-        // ユーザー情報保存
-        $user->save();
-
-        return redirect('/users');
-        // return redirect()->route('user_home.meal_task')->with('update_password_success', 'パスワードを変更しました。');
+            // ユーザー情報保存
+            $user->save();
+        }else{
+            return redirect('/users')
+            ->with('message', '保護されているコンテンツです。');
+            // return redirect()->route('user_home.meal_task')->with('update_password_success', 'パスワードを変更しました。');
+        }
     }
 
     // 食事タスク一覧表示

@@ -22,11 +22,6 @@ class User extends Authenticatable
         'email',
         'password',
         'image',
-        'last_login_at',
-        'last_logout_at',
-        'login_count',
-        'last_activity_at',
-        'logged_in',
     ];
 
     /**
@@ -76,10 +71,5 @@ class User extends Authenticatable
     public function memos()
     {
         return $this->hasMany('App\Models\Memo');
-    }
-
-    public function histories()
-    {
-        return $this->hasMany('App\Models\History');
     }
 }

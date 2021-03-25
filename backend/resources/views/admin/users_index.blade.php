@@ -6,12 +6,6 @@
   <div class="row">
     <div class="col col-xs-12 main-container">
 
-    <div class="container mt-2">
-      @if (Session::has('message'))
-        <li class="alert alert-danger">{{ session('message') }}</li>
-      @endif
-    </div>
-
         <nav class="panel panel-default">
           <div class="panel-heading form-title">
             <ul class="nav container-tabs">

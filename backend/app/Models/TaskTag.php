@@ -9,6 +9,10 @@ class TaskTag extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+    ];
+
 // リーレーション---
     public function user(){
         return $this->belongsTo('App\Models\User');

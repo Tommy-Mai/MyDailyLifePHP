@@ -69,6 +69,19 @@
                     </form>
                 </div>
             </div>
+
+            <div id="test-login_btn" class="login-form-test-login">
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+                    <div class="form test-user_form">
+                        <input value="sample@example.com" type="hidden" name="email" id="email">
+                        <input value="test" type="hidden" name="password" id="password">
+                        <button type="submit" class="btn login-btn test-login-btn">
+                            テストユーザーとしてログイン
+                        </button>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
