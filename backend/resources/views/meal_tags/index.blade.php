@@ -23,7 +23,7 @@
               <p>{{$meal_tag->name}}</p>
             </div>
             <div class="tag-count col-xs-4">
-              <a href="#">
+              <a href="/users?tag_id={{ $meal_tag->id }}">
                 タスク一覧
               </a>
               <p>0件</P>

@@ -87,11 +87,11 @@ class UserHomeController extends Controller
 
             // ユーザー情報保存
             $user->save();
-            return redirect('/users');
+            return redirect('/users')
+            ->with('message', 'ユーザー情報を更新しました。');
         }else{
             return redirect('/users')
             ->with('message', '保護されているコンテンツです。');
-            // return redirect()->route('user_home.meal_task')->with('update_password_success', 'パスワードを変更しました。');
         }
     }
 
@@ -112,10 +112,11 @@ class UserHomeController extends Controller
 
             // ユーザー情報保存
             $user->save();
+            return redirect()->route('user_home.meal_task')->with('message', 'パスワードを変更しました。');
         }else{
             return redirect('/users')
             ->with('message', '保護されているコンテンツです。');
-            // return redirect()->route('user_home.meal_task')->with('update_password_success', 'パスワードを変更しました。');
+
         }
     }
 
