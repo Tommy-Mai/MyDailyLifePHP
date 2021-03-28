@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', 'App\Http\Controllers\HomeController@home')->name('home');
 
 // 全てのユーザーがアクセス可能
-Route::get('/about', 'App\Http\Controllers\AboutWebsiteController@about')->name('home.about');
+Route::get('/about_MyDailyLife', 'App\Http\Controllers\AboutWebsiteController@about_mydailylife')->name('home.about_mydailylife');
 Route::get('/policy', 'App\Http\Controllers\AboutWebsiteController@policy')->name('home.policy');
 Route::get('/privacy_policy', 'App\Http\Controllers\AboutWebsiteController@privacy_policy')->name('home.privacy_policy');
 Route::get('/faqs', 'App\Http\Controllers\AboutWebsiteController@faqs')->name('home.faqs');

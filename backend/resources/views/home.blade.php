@@ -24,7 +24,7 @@
         <p>タグや日付別にタスクを一覧で見る事ができる他、</p>
         <p>キーワードでの検索も可能なので、タスクを探すのも簡単！</p>
         <div class="top-about_btn">
-            <a href="/about">もっと詳しく見る</a>
+            <a href="/about_MyDailyLife">もっと詳しく見る</a>
         </div>
     </div>
 

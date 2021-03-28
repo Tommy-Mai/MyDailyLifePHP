@@ -78,7 +78,7 @@
               <p>{{$tag->name}}</p>
             </div>
             <div class="tag-count col-xs-4">
-              <a href="#">
+              <a href="/users/other?tag_id={{ $tag->id }}">
                 タスク一覧
               </a>
               <p>0件</P>
@@ -89,7 +89,7 @@
             <div class="to-create-tag-index col-xs-11">
               <p class="modal-open-btn" data-toggle="modal" data-target="#tag-create-modal" data-type="@edit" data-id="{{$tag->id}}" data-name="{{$tag->name}}">タグ編集</p>
             </div>
-            <div class="to-create-tag-index col-xs-1">
+            <div class="to-create-tag-index">
               <form action="{{ route('task_tags.delete', $tag->id) }}" method="POST">
                 @method('DELETE')
                 @csrf

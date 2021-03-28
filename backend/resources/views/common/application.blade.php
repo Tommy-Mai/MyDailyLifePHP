@@ -58,7 +58,7 @@
             </li>
           @else
             <li class="nav-item my-navbar-item">
-              <a class="nav-link" href="{{ route('home.about') }}">MyDailyLifeとは</a>
+              <a class="nav-link" href="/about_MyDailyLife">MyDailyLifeとは</a>
             </li>
             <li class="nav-item my-navbar-item">
               <a class="nav-link" href="{{ route('register') }}">新規登録</a>
@@ -112,7 +112,7 @@
           <div class="col-xs-2"></div>
           <div class="col-xs-4">
             <h3>ご利用ガイド</h3>
-            <a href="/about">MyDailyLifeとは</a>
+            <a href="/about_MyDailyLife">MyDailyLifeとは</a>
             <a href="/faqs">よくある質問</a>
           </div>
           <div class="col-xs-4">

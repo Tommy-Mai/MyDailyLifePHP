@@ -2,10 +2,10 @@
 
 @section('header-today')
 
-<div class="icon col-xs-1 col-xs-offset-3">
+<div class="icon col-xs-1">
   <a href="/calendar/day/other?date={{$sub_date}}">&lt;</a>
 </div>
-<span class="calendar-title col-xs-4 text-center" id="pop_trigger">
+<span class="calendar-title col-xs-9 text-center" id="pop_trigger">
   <a href="/calendar/day/other">
     {{$today_date}}
   </a>
@@ -28,9 +28,9 @@
 @endsection
 
 @section('home-create-tab')
-@if(empty($tags))
+@if($tags->isEmpty())
   <div class="panel-heading home-create-tab">
-    <a href="{{ route('task_tags') }}" class="container-tabs ">その他タグ一覧(新規タグ作成)へ</a>
+    <a href="{{ route('task_tags.index') }}" class="container-tabs ">その他タグ一覧(新規タグ作成)へ</a>
   </div>
 @else
   <div class="panel-heading home-create-tab">

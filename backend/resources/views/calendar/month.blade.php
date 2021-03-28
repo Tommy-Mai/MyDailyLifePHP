@@ -9,17 +9,20 @@
 <div class="row">
   <div class="calendar-container col col-xs-12">
     <div class="my-month-calendar">
-      <div class="calendar-heading col-xs-12">
-        <div class="icon col-xs-1 col-xs-offset-3">
-          <a href="/calendar/month?y={{$subY}}&m={{$subM}}">&lt;</a>
-        </div>
-        <span class="calendar-title col-xs-4 text-center" id="pop_trigger">
-          <a href="/calendar/month">
-            {{$date->year}}年{{$date->month}}月
-          </a>
-        </span>
-        <div class="icon col-xs-1">
-          <a href="/calendar/month?y={{$addY}}&&m={{$addM}}">&gt;</a>
+
+      <div class="col-xs-12">
+        <div class="calendar-heading col-xs-12">
+          <div class="icon col-xs-1 col-xs-offset-3">
+            <a href="/calendar/month?y={{$subY}}&m={{$subM}}">&lt;</a>
+          </div>
+          <span class="calendar-title col-xs-4 text-center" id="pop_trigger">
+            <a href="/calendar/month">
+              {{$date->year}}年{{$date->month}}月
+            </a>
+          </span>
+          <div class="icon col-xs-1">
+            <a href="/calendar/month?y={{$addY}}&&m={{$addM}}">&gt;</a>
+          </div>
         </div>
       </div>
 

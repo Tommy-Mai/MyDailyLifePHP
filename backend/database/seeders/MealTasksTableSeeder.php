@@ -16,21 +16,18 @@ class MealTasksTableSeeder extends Seeder
     public function run()
     {
         $user = DB::table('users')->first();
-
-        foreach (range(1, 3) as $num) {
-            DB::table('meal_tasks')->insert([
-                'name' => "サンプルタスク".$num,
-                'description' => "サンプルタスク詳細".$num,
-                'date' => Carbon::now()->addDay($num),
-                'tag_id' => $num,
-                'user_id' => $user->id,
-                'with_whom' => "{$num}人",
-                'where' => "",
-                'time' => Carbon::now(),
-                'protected' => false,
-                'created_at' => Carbon::now(),
-                'updated_at' => Carbon::now(),
-            ]);
-        }
+        DB::table('meal_tasks')->insert([
+            'name' => "MyDailyLifeへようこそ",
+            'description' => "詳細は140文字まで登録できます。「タイトル・どこで・誰と」は30文字までです。",
+            'date' => Carbon::now(),
+            'tag_id' => 1,
+            'user_id' => 1,
+            'with_whom' => "任意で記入",
+            'where' => "任意で記入",
+            'time' => Carbon::now(),
+            'protected' => true,
+            'created_at' => Carbon::now(),
+            'updated_at' => Carbon::now(),
+        ]);
     }
 }
