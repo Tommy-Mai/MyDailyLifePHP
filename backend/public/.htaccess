@@ -2,8 +2,14 @@
     <IfModule mod_negotiation.c>
         Options -MultiViews -Indexes
     </IfModule>
+    
+    # 以下、1行追加
+    Options +FollowSymLinks -Indexes
 
     RewriteEngine On
+    # 以下、2行追加
+    RewriteBase /
+    RewriteRule (.+)\.html$ /$1.php
 
     # Handle Authorization Header
     RewriteCond %{HTTP:Authorization} .

@@ -48,10 +48,11 @@ class AdminUserController extends Controller
                 User::destroy($id);
             }
             // 管理者要ユーザー一覧ページへ戻る
-            return redirect('/admin/users_index')
-            ->with('message', '削除できないユーザーです。');
+	    return redirect('/admin/users_index')
+	    ->with('message', 'ユーザーを削除しました。');
         }else{
-            return redirect('/users');
+		return redirect('/users')
+		->with('message', '削除できないユーザーです。');
         }
 
     }

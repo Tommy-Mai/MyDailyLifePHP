@@ -58,7 +58,7 @@
   </div>
 </div>
 
-<div class="row">
+<div class="row col-xs-12">
   <div class="col col-xs-12 main-container">
     <nav class="panel panel-default">
       <div class="panel-heading">
@@ -78,18 +78,20 @@
               <p>{{$tag->name}}</p>
             </div>
             <div class="tag-count col-xs-4">
-              <a href="#">
+              <a href="/users/other?tag_id={{ $tag->id }}">
                 タスク一覧
               </a>
-              <p>0件</P>
+              <p>{{ $tasks->where('tag_id', $tag->id)->count() }}件</P>
             </div>
             <div class="to-create-tag-index col-xs-12">
               <a href="{{ route('tasks.create') }}">タスク作成</a>
-            </div>
-            <div class="to-create-tag-index col-xs-11">
+	    </div>
+
+            <div class="col-xs-12 to-create-tag-index-bottom"> 
+	    <div class="to-create-tag-index">
               <p class="modal-open-btn" data-toggle="modal" data-target="#tag-create-modal" data-type="@edit" data-id="{{$tag->id}}" data-name="{{$tag->name}}">タグ編集</p>
             </div>
-            <div class="to-create-tag-index col-xs-1">
+            <div class="to-create-tag-index">
               <form action="{{ route('task_tags.delete', $tag->id) }}" method="POST">
                 @method('DELETE')
                 @csrf
@@ -97,7 +99,9 @@
                   <i class="fas fa-trash-alt"></i>
                 </button>
               </form>
+	    </div>
             </div>
+
           </div>
         @endforeach
       </div>

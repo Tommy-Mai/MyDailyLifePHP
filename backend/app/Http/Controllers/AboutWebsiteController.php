@@ -23,9 +23,9 @@ class AboutWebsiteController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function about()
+    public function about_mydailylife()
     {
-      return view('home.about');
+      return view('home.about_mydailylife');
     }
 
     public function policy()

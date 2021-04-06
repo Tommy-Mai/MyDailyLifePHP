@@ -25,7 +25,7 @@
                         <label for="current_password" class="col-md-4 col-form-label text-md-right">現在のパスワード</label>
 
                         <div class="col-md-6">
-                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="current_password">
+                            <input type="password" class="form-control @error('password') is-invalid @enderror" name="current_password" autocomplete="current_password" autofocus>
                         </div>
                     </div>
 

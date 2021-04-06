@@ -58,14 +58,14 @@
   <div class="row">
     <div class="col col-xs-12 main-container">
         <!-- ユーザー情報表示 -->
-        <div class="user-info-container">
+        <div class="user-info-container row">
           <div class="col-xs-2 col-xs-offset-2">
             <img src="{{ asset('storage/profiles/'.$user->image) }}" alt="プロフィール画像" class="rounded-circle user-img">
           </div>
-          <div class="row user-info-items">
+          <div class="row user-info-items col-xs-6">
             <div class="col-xs-12">{{ $user->name }}</div>
             <div class="col-xs-12">{{ $user->email }}</div>
-            <div class="col-xs-1 col-xs-offset-5">
+            <div class="col-xs-1 col-xs-offset-9">
               <a href="{{ route('user_home.edit') }}"><i class="fas fa-cog"></i></a>
             </div>
           </div>

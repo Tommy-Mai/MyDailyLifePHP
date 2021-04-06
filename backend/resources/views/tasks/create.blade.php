@@ -28,7 +28,7 @@
     @endforeach
   </select>
   <label class="control-label form-label col-xs-12">タイトル</label>
-  <input type="text" class="col-xs-12" name="name" value="{{ old('name') }}"/>
+  <input type="text" class="col-xs-12" name="name" value="{{ old('name') }}" autofocus/>
   <label class="control-label form-label col-xs-12">詳細</label>
   <textarea class="col-xs-12" name="description" value="{{ old('description') }}"></textarea>
   <label class="control-label form-label col-xs-12">誰と</label>
