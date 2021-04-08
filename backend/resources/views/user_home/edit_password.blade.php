@@ -22,7 +22,7 @@
                 @endif
 
                     <div class="form-group row">
-                        <label for="current_password" class="col-md-4 col-form-label text-md-right">現在のパスワード</label>
+                        <label for="current_password" class="col-md-4 col-form-label text-md-right required">現在のパスワード</label>
 
                         <div class="col-md-6">
                             <input type="password" class="form-control @error('password') is-invalid @enderror" name="current_password" autocomplete="current_password" autofocus>
@@ -30,7 +30,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="new_password" class="col-md-4 col-form-label text-md-right">新しいパスワード(8文字以上)</label>
+                        <label for="new_password" class="col-md-4 col-form-label text-md-right required">新しいパスワード　　　　</br>(8文字以上)</label>
 
                         <div class="col-md-6">
                             <input type="password" class="form-control" name="new_password" autocomplete="new_password">
@@ -38,7 +38,7 @@
                     </div>
 
                     <div class="form-group row">
-                        <label for="new_password_confirm" class="col-md-4 col-form-label text-md-right">新しいパスワード(確認)</label>
+                        <label for="new_password_confirm" class="col-md-4 col-form-label text-md-right required">新しいパスワード(確認)</label>
 
                         <div class="col-md-6">
                             <input type="password" class="form-control" name="new_password_confirmation" autocomplete="new_password">

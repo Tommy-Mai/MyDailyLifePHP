@@ -34,7 +34,7 @@
   </div>
 @else
   <div class="panel-heading home-create-tab">
-    <a href="{{ route('tasks.create') }}" class="container-tabs ">新規その他タスク作成＋</a>
+    <a href="/tasks/create?date={{$date}}" class="container-tabs ">新規その他タスク作成＋</a>
   </div>
 @endif
 @endsection

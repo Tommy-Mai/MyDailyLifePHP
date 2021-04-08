@@ -45,6 +45,19 @@
                         </div>
                     </div>
 
+                    <div class="form-group row">
+                        <label for="color" class="col-md-4 col-form-label text-md-right">テーマカラー</label>
+                        
+                        <div class="color-btn-container col-md-6">
+                            <span class="color-btn col-xs-2" style="background-color: #8fd3f5" onclick="changeLightBlue()"></span>
+                            <span class="color-btn col-xs-2" style="background-color: #f2a3c5" onclick="changePink()"></span>
+                            <span class="color-btn col-xs-2" style="background-color: #ff9840" onclick="changeOrange()"></span>
+                            <span class="color-btn col-xs-2" style="background-color: #3ec187" onclick="changeGreen()"></span>
+                            <span class="color-btn col-xs-2" style="background-color: #0e487f" onclick="changeBlue()"></span>
+                            <input value="" type="hidden" name="color" id="theme-color">
+                        </div>
+                    </div>
+
                     <div class="form-group row mb-0">
                         <div class="col-md-6 offset-md-4">
                             <button type="submit" class="btn form-btn">

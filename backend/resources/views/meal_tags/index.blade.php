@@ -29,7 +29,7 @@
               <p>{{ $tasks->where('tag_id', $tag->id)->count() }}件</P>
             </div>
             <div class="to-create-tag-index col-xs-12">
-              <a href="{{ route('meal_tasks.create') }}">タスク作成</a>
+              <a href="/meal_tasks/create?tag_id={{$tag->id}}">タスク作成</a>
             </div>
           </div>
         @endforeach

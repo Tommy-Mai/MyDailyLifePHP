@@ -16,7 +16,7 @@ class MealTasksTableSeeder extends Seeder
     public function run()
     {
         $user = DB::table('users')->first();
-   	DB::table('meal_tasks')->insert([
+    DB::table('meal_tasks')->insert([
             'name' => "MyDailyLifeへようこそ",
             'description' => "詳細は140文字まで登録できます。「タイトル・どこで・誰と」は30文字までです。",
             'date' => Carbon::now(),

@@ -69,4 +69,3 @@ class AboutWebsiteController extends Controller
       ->with('message', 'お問い合わせを受け付けました。ありがとうございます。');
   
   }
-}

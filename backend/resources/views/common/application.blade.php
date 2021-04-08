@@ -133,6 +133,35 @@
         document.getElementById('logout-form').submit();
       });
     </script>
+
+    <script>
+      // テーマカラー選択
+      document.documentElement.setAttribute('theme', "{{Auth::user()->color}}");
+      function changeLightBlue() {
+        document.documentElement.setAttribute('theme', 'LIGHTBLUE');
+        $("#theme-color").attr("value", 'LIGHTBLUE');
+      }
+      function changePink() {
+        document.documentElement.setAttribute('theme', 'PINK');
+        $("#theme-color").attr("value", 'PINK');
+      }
+      function changeOrange() {
+        document.documentElement.setAttribute('theme', 'ORANGE');
+        $("#theme-color").attr("value", 'ORANGE');
+      }
+      function changeGreen() {
+        document.documentElement.setAttribute('theme', 'GREEN');
+        $("#theme-color").attr("value", 'GREEN');
+      }
+      function changeBlue() {
+        document.documentElement.setAttribute('theme', 'BLUE');
+        $("#theme-color").attr("value", 'BLUE');
+      }
+    </script>
+  @else
+    <script>
+      document.documentElement.setAttribute('theme', 'LIGHTBLUE');
+    </script>
   @endif
 
     <!-- Optional JavaScript -->

@@ -63,7 +63,7 @@
               <!-- ループの日と今日を比較 -->
               @if ($comp == $today_comp)
                 <!-- 同じなので緑色の背景にする -->
-                  <td class="day today" style="background: #8fd3f5; color: white;">
+                  <td class="day today" style="background: var(--theme-color); color: white;">
                   {{$date->day}}
                   <div class="task-count">
                     <a href="/calendar/day/meal?date={{$date->format('Y-m-d')}}" class="col-xs-12">食事{{$meal_tasks->getTaskNum($date)}}件</a>

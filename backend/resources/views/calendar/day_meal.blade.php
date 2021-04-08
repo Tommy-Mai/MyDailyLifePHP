@@ -29,6 +29,6 @@
 
 @section('home-create-tab')
 <div class="panel-heading home-create-tab">
-  <a href="{{ route('meal_tasks.create') }}" class="container-tabs ">新規食事タスク作成＋</a>
+  <a href="/meal_tasks/create?date={{$date}}" class="container-tabs ">新規食事タスク作成＋</a>
 </div>
 @endsection
