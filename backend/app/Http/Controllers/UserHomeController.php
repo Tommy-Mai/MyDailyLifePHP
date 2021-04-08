@@ -127,6 +127,7 @@ class UserHomeController extends Controller
 	}else{
             return redirect('/users')
             ->with('message', '保護されているコンテンツです。');
+
         }
     }
 

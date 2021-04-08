@@ -51,8 +51,8 @@ class AdminUserController extends Controller
 	    return redirect('/admin/users_index')
 	    ->with('message', 'ユーザーを削除しました。');
         }else{
-		return redirect('/users')
-		->with('message', '削除できないユーザーです。');
+      return redirect('/users')
+      ->with('message', '削除できないユーザーです。');
         }
 
     }

@@ -4,7 +4,6 @@
 
 @section('content')
   <div class="row">
-  
   <div class="col-xs-12">
     <div class="col-xs-12 header-today">
       @yield('header-today')
