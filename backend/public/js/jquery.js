@@ -60,7 +60,7 @@ $(function () {
       $("#edit-modal-name").attr("value", `${memoName}`)
 
       let memoDescription = $(this).attr('data-description');
-      $("#edit-modal-description").attr("value", `${memoDescription}`)
+      $('textarea[id="edit-modal-description"]').val(`${memoDescription}`)
     };
   });
 

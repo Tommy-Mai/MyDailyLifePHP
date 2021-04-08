@@ -17,19 +17,19 @@
         </ul>
       </div>
       <div class="list-group">
-        @foreach($meal_tags as $meal_tag)
+        @foreach($tags as $tag)
           <div class="tags-index-item row">
             <div class="tag-name col-xs-8">
-              <p>{{$meal_tag->name}}</p>
+              <p>{{$tag->name}}</p>
             </div>
             <div class="tag-count col-xs-4">
-              <a href="/users?tag_id={{ $meal_tag->id }}">
+              <a href="/users?tag_id={{ $tag->id }}">
                 タスク一覧
               </a>
-              <p>0件</P>
+              <p>{{ $tasks->where('tag_id', $tag->id)->count() }}件</P>
             </div>
             <div class="to-create-tag-index col-xs-12">
-              <a href="{{ route('meal_tasks.create') }}">タスク作成</a>
+              <a href="/meal_tasks/create?tag_id={{$tag->id}}">タスク作成</a>
             </div>
           </div>
         @endforeach

@@ -57,14 +57,19 @@ class LoginController extends Controller
         // 他のデバイス上のセッションを無効化する（新しくログインしたセッションを有効にする）
         auth()->logoutOtherDevices($request->input('password'));
 
-        // テストユーザーの場合、ログイン時に保護されたコンテンツ以外削除
+        // 以下、テストユーザーの場合の処理
         if($user->id == 1){
+            // テーマカラーをデフォルトに戻す。
+            $user->color = 'LIGHTBLUE';
+            $user->save();
+
+            // テストユーザーの場合、ログイン時に保護されたコンテンツ以外削除
             $user->meal_tasks()->where('protected', false)->delete();
             $user->tasks()->where('protected', false)->delete();
             $user->task_tags()->where('protected', false)->delete();
             $user->task_comments()->where('protected', false)->delete();
             $user->memos()->where('protected', false)->delete();
-    
+
             // コメントは紐づいた画像があれば削除してから、コメント削除
             $meal_comments = $user->meal_comments()->where('protected', false)->get();
             foreach($meal_comments as $comment){

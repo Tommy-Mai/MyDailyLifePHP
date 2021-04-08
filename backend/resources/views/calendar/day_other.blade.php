@@ -2,15 +2,15 @@
 
 @section('header-today')
 
-<div class="icon col-xs-1">
+<div class="icon">
   <a href="/calendar/day/other?date={{$sub_date}}">&lt;</a>
 </div>
-<span class="calendar-title col-xs-9 text-center" id="pop_trigger">
+<span class="calendar-title text-center" id="pop_trigger">
   <a href="/calendar/day/other">
     {{$today_date}}
   </a>
 </span>
-<div class="icon col-xs-1">
+<div class="icon">
   <a href="/calendar/day/other?date={{$add_date}}">&gt;</a>
 </div>
 
@@ -34,7 +34,7 @@
   </div>
 @else
   <div class="panel-heading home-create-tab">
-    <a href="{{ route('tasks.create') }}" class="container-tabs ">新規その他タスク作成＋</a>
+    <a href="/tasks/create?date={{$date}}" class="container-tabs ">新規その他タスク作成＋</a>
   </div>
 @endif
 @endsection

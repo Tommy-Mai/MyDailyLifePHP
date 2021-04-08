@@ -65,12 +65,13 @@ textarea {
 /* ----ここからヘッダー---- */
 .my-navbar {
   align-items: center;
-  background: #8fd3f5;
+  background: var(--theme-color);
   display: flex;
   min-height: 64px;
   justify-content: space-between;
   padding: 0 2%;
-  /* margin-bottom: 3rem; */
+  margin-bottom: 3rem;
+  border-radius: 0px !important;
 }
 
 .my-navbar-brand {
@@ -84,10 +85,10 @@ textarea {
 
 .my-navbar-brand:hover,
 a.my-navbar-item:hover {
-  color: #5aa1d8;
+  color: var(--theme-color-dark);
 }
 
-/* .table td:nth-child(2),
+/*  .table td:nth-child(2),
 .table td:nth-child(3),
 .table td:nth-child(4) {
   white-space: nowrap;
@@ -104,7 +105,7 @@ a.my-navbar-item:hover {
 }
 
 #my-navbar-nav a:hover{
-  color: #5aa1d8;
+  color: var(--theme-color-dark);
 }
 
 #my-navbar-toggler {
@@ -128,7 +129,7 @@ a.my-navbar-brand:not([href]):not([tabindex]), a.my-navbar-brand:not([href]):not
   top: 68px;
   /* width: 100%; */
   text-align: center;
-  background-color: #ddebf1;
+  background-color: var(--subheader-color);
   line-height: 40px;
 }
 
@@ -155,7 +156,7 @@ a.my-navbar-brand:not([href]):not([tabindex]), a.my-navbar-brand:not([href]):not
 }
 
 .sub-header-items {
-  border-top: 2px dashed #ddebf1;
+  border-top: 2px dashed #fff;
   margin-top: 10px;
   padding-top: 5px;
   padding-left: 10px;
@@ -171,12 +172,11 @@ a.my-navbar-brand:not([href]):not([tabindex]), a.my-navbar-brand:not([href]):not
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: 160px;
   padding: 20px 0;
-  background-color: #e2eef3;
-  border-top: 2px solid #c4d9e2;
+  background-color: var(--subheader-color);
+  border-top: 2px solid var(--subheader-color-border);
   color: #243750;
-  margin-top: 40px;
+  margin-top: 50px;
   right: 0;
   left: 0;
 }
@@ -193,7 +193,7 @@ a.my-navbar-brand:not([href]):not([tabindex]), a.my-navbar-brand:not([href]):not
   margin-top: 10px;
 }
 .footer a:hover {
-  color: #5aa1d8;
+  color: var(--theme-color-dark);
 }
 /* ----ここまでフッター---- */
 
@@ -240,6 +240,17 @@ i.user-page-icon {
   color: #243750;
 }
 
+label.required:after {
+  margin-left: 1.0em;
+  padding: 2px 10px;
+  border-radius: 4px;
+  font-size: 14px;
+  color: #fff;
+  background-color: #e8512f;
+  content: "必須";
+  word-break: keep-all;
+}
+
   /* ページトップボタン */
 #page-top_btn {
   color: rgba(49, 62, 122,0.8);
@@ -276,7 +287,7 @@ i.user-page-icon {
 }
 
 .nav>li>a {
-  padding: 16px 20px;
+  padding: 16px 10px;
 }
 
 .nav.container-tabs>li>a:hover {
@@ -285,7 +296,7 @@ i.user-page-icon {
 }
 
 li.active {
-  border-bottom: 2px solid #8fd3f5;
+  border-bottom: 2px solid var(--theme-color);
 }
 
 li.active .container-tabs {
@@ -313,27 +324,32 @@ li.active .container-tabs {
   font-size: 16px;
   font-weight: 300;
   text-align: right;
-}
-.tag-count a {
-  font-size: 18px;
+  padding: 0;
 }
 
 .to-create-tag-index {
   text-align: right;
-  float: right;
   margin-top: 8px;
   font-size: 14px;
+  padding: 0;
+  display: inline-block;
 }
 .to-create-tag-index a,.tags-index-item a, .to-create-tag-index i {
   color: #8899a6;
 }
+
 .to-create-tag-index a:hover, .tags-index-item a:hover, .to-create-tag-index i:hover {
   color: #243750;
   text-decoration: none;
 }
 
 .to-create-tag-index .fa-trash-alt {
-  margin-left: 5px;
+  margin-left: 10px;
+}
+
+.to-create-tag-index-bottom {
+  text-align: right;
+  padding: 0;
 }
 
 /* タスク一覧のコンテナ内 タスク表示部分 */
@@ -358,13 +374,13 @@ li.active .container-tabs {
 }
 
 .task-name a:hover {
-  color: #8fd3f5;
+  color: var(--theme-color);
   text-decoration: none;
 }
 
 .task-index-tag {
   height: 50%;
-  background-color: #8fd3f5;
+  background-color: var(--theme-color);
   text-align: center;
   line-height: 35px;
 }
@@ -374,7 +390,7 @@ li.active .container-tabs {
 }
 
 .task-index-tag a:hover {
-  color: #5aa1d8;
+  color: var(--theme-color-dark);
   text-decoration: none;
   word-break: break-all;
 }
@@ -472,7 +488,7 @@ div.task-show-btn {
 }
 .comment_new-container {
   padding: 10px 0;
-  background-color: #8fd3f5;
+  background-color: var(--theme-color);
   line-height: 20px;
 }
 
@@ -480,11 +496,12 @@ div.task-show-btn {
 .comment_new-container div.col-xs-1,
 .comment_new-container form.col-xs-12 {
   padding: 0;
+  text-align: center;
 }
 
 .comment_new-container textarea {
   resize: none;
-  border: 1px solid #8fd3f5;
+  border: 1px solid var(--theme-color);
   background-color: white;
   padding: 10px;
   font-size: 16px;
@@ -520,7 +537,7 @@ div.task-show-btn {
 }
 
 .comment_new-container i:hover {
-  color: #5aa1d8;
+  color: var(--theme-color-dark);
 }
 
 .comment_new-container button {
@@ -538,10 +555,10 @@ nav.panel {
 
 .comment-container {
   padding: 20px 30px;
-  background-color: #f4fbff;
+  background-color: var(--theme-color-light);
   height: 450px;
   line-height: 20px;
-  border-top: 2px solid #8fd3f5;
+  border-top: 2px solid var(--theme-color);
   overflow: scroll;
 }
 
@@ -572,8 +589,8 @@ nav.panel {
 }
 
 .right_comment_block a:hover {
-  color: #5aa1d8;
-  text-decoration: underline #5aa1d8;
+  color: var(--theme-color-dark);
+  text-decoration: underline var(--theme-color-dark);
 }
 
 .right_item_block {
@@ -605,8 +622,8 @@ div.comment_destroy_right, div.comment_time_right {
 
 .right_balloon {
   position: relative;
-  background: #8fd3f5;
-  border: 1px solid  #8fd3f5;
+  background: var(--theme-color);
+  border: 1px solid  var(--theme-color);
   padding: 6px 10px;
   border-radius: 15px;
   clear: both;
@@ -628,7 +645,7 @@ div.comment_destroy_right, div.comment_time_right {
 
 .right_balloon:after, .right_balloon:before{
   border-color: rgba(200, 200, 200, 0);
-  border-left-color: #8fd3f5;
+  border-left-color: var(--theme-color);
   border-width: 6px;
   margin-top: -6px;
 }
@@ -684,7 +701,7 @@ div.comment_destroy_right, div.comment_time_right {
   font-size: 24px;
   color: #8899a6;
   font-weight: 300;
-  background-color: #ddebf1;
+  background-color: var(--subheader-color);
   box-shadow: none;
 }
 
@@ -730,7 +747,7 @@ p.between_date {
 }
 
 .form-btn {
-  background-color: #8fd3f5;
+  background-color: var(--theme-color);
   color: white;
   cursor: pointer;
   font-weight: 400;
@@ -741,16 +758,16 @@ p.between_date {
 }
 
 .form-btn:hover {
-  background-color: #5aa1d8;
+  background-color: var(--theme-color-dark);
   color: white;
 }
 
 .login-btn {
-  background-color: #8fd3f5;
+  background-color: var(--theme-color);
   color: white;
 }
 .login-btn:hover {
-  background-color: #5aa1d8;
+  background-color: var(--theme-color-dark);
   color: white;
 }
 
@@ -798,7 +815,7 @@ div.user-info-items {
 
 .panel-heading.home-create-tab {
   text-align: center;
-  background-color: #f4fbff;
+  background-color: var(--theme-color-light);
   padding: 20px 30px;
   overflow: hidden;
   box-shadow: 0 2px 6px #c1ced7;
@@ -856,6 +873,10 @@ p.memo-create {
   font-weight: 500;
 }
 
+#edit-modal-description{
+  height: 200px;
+}
+
 /* モーダル */
 .modal-btn-container {
   text-align: center;
@@ -905,7 +926,11 @@ div.calendar-container a {
   margin-bottom: 10px;
 }
 
-div.calendar-container a:hover {
+div.calendar-container td.today a {
+  color: #fff;
+}
+
+div.calendar-container a:hover, div.calendar-container td.today a:hover{
   color: #243750;
   text-decoration: none;
 }
@@ -916,10 +941,19 @@ div.calendar-container a:hover {
   line-height: 34px;
 }
 
+div.icon {
+  display: inline-block;
+  margin: 0 20px;
+}
+
 .icon a {
   font-size: 14px;
   font-weight: 800;
   line-height: 34px;
+}
+
+div.calendar-heading {
+  text-align: center;
 }
 
   /* 曜日表示 */
@@ -927,7 +961,7 @@ div.calendar-container a:hover {
   border-top: 1px solid #c4d9e2;
 }
 .table>thead>tr>th,.table thead th {
-  border-bottom: 2px solid #8fd3f5;
+  border-bottom: 2px solid var(--theme-color);
   width: 14.28%;
 }
 
@@ -967,11 +1001,19 @@ div.calendar-container a:hover {
   padding: 0;
 }
 
+.table>tbody>tr>td.day {
+  border-left: 1px solid #c4d9e2;
+  border-right: 1px solid #c4d9e2;
+  border-collapse: collapse;
+  border-bottom: 1px solid #c4d9e2;
+}
+
   /* 日別カレンダー */
   /* 日付表示 */
 .header-today {
   margin: 10px 0;
   padding: 0;
+  text-align: center;
 }
 
 .header-today a {
@@ -987,7 +1029,7 @@ div.calendar-container a:hover {
 .swiper-container {
   text-align: center;
   width: 100%;
-  background-color: #8fd3f5;
+  background-color: var(--theme-color);
   margin-top: -48px;
 }
 
@@ -1024,8 +1066,8 @@ div.calendar-container a:hover {
 .top-about_MDL {
   padding: 40px 10px;
   text-align: center;
-  background-color: #f4fbff;
-  color: #5aa1d8;
+  background-color: var(--theme-color-light);
+  color: var(--theme-color-dark);
 }
 
 .top-about_MDL h3 {
@@ -1042,7 +1084,7 @@ div.calendar-container a:hover {
   font-size: 16px;
   padding: 10px 20px;
   border-radius: 2px;
-  background-color: #8fd3f5;
+  background-color: var(--theme-color);
   color: #fff;
   border-radius: .25rem;
 }
@@ -1051,7 +1093,7 @@ div.calendar-container a:hover {
   color: #fff;
   box-shadow: none;
   text-decoration: none;
-  background-color: #5aa1d8;
+  background-color: var(--theme-color-dark);
 }
 
 /* テストユーザーログイン関連 */
@@ -1060,7 +1102,7 @@ div.calendar-container a:hover {
   margin: 0 auto;
   padding: 50px 10px;
   width: 100%;
-  background-color: #8fd3f5;
+  background-color: var(--theme-color);
   text-align: center;
 }
 
@@ -1085,11 +1127,11 @@ div.calendar-container a:hover {
 }
 
 .test-login-btn {
-  background-color: #5aa1d8;
+  background-color: var(--theme-color-dark);
 }
 
 .test-login-btn:hover {
-  background-color: #4283b4;
+  background-color: var(--theme-color-dark-shadow);
 }
 
 div#test-login_btn.login-form-test-login {
@@ -1107,8 +1149,8 @@ div#test-login_btn.login-form-test-login {
 
 .about-header {
   padding: 20px 10%;
-  color: #f4fbff;
-  background-color: #5aa1d8;
+  color: var(--theme-color-light);
+  background-color: var(--theme-color-dark)
 }
 
 .about-container h1 {
@@ -1117,7 +1159,7 @@ div#test-login_btn.login-form-test-login {
   font-size: 48px;
   line-height: 52px;
   padding: 35px 0 25px;
-  text-shadow: 1px 2px 2px #4283b4;
+  text-shadow: 1px 2px 2px var(--theme-color-dark-shadow);
 }
 
 .about-container h2 {
@@ -1187,7 +1229,7 @@ div#test-login_btn.login-form-test-login {
 
 .question {
   padding: 10px 20px;
-  border-bottom: 1px dotted #f4fbff;
+  border-bottom: 1px dotted var(--theme-color-light);
 }
 
 .answer {
@@ -1265,9 +1307,66 @@ text-decoration: none;
 
 .policy-content a {
   font-size: 16px;
-  color: #8fd3f5;
+  color: var(--theme-color);
 }
 
 .policy-content a:hover {
-  color: #5aa1d8;
+  color: var(--theme-color-dark);
+}
+
+/* テーマカラー 一覧 */
+.color-btn{
+  display: block;
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+:root,
+:root[theme='LIGHTBLUE'] {
+  --theme-color: #8fd3f5;
+  --theme-color-dark: #5aa1d8;
+  --theme-color-dark-shadow: #4283b4;
+  --theme-color-dark-background: rgba(90, 161, 216, 0.8);
+  --theme-color-light: #f4fbff;
+  --theme-color-rgba:  rgba(142, 211, 245, 0.6);
+  --subheader-color: #ddebf1;
+  --subheader-color-border: #c4d9e2;
+}
+:root,
+:root[theme='PINK'] {
+  --theme-color: #f2a3c5;
+  --theme-color-dark: #dc719d;
+  --theme-color-dark-shadow: #9e2656;
+  --theme-color-light: #fff1f7;
+  --subheader-color: #ffebef;
+  --subheader-color-border: #d8c1c5;
+}
+:root,
+:root[theme='ORANGE'] {
+  --theme-color: #ff9840;
+  --theme-color-dark: #e6660b;
+  --theme-color-dark-shadow: #9e5c24;
+  --theme-color-light: #ffe5a4;
+  --subheader-color: #ffedbc;
+  --subheader-color-border: #f3bd53;
+}
+:root,
+:root[theme='GREEN'] {
+  --theme-color: #3ec187;
+  --theme-color-dark: #277753;
+  --theme-color-dark-shadow: #2a4e3f;
+  --theme-color-light: #b8e8be;
+  --subheader-color: #d5f5d9;
+  --subheader-color-border: #71b392;
+}
+:root,
+:root[theme='BLUE'] {
+  --theme-color: #0e487f;
+  --theme-color-dark: #3b6d9e;
+  --theme-color-dark-shadow: #0e2f4e;
+  --theme-color-light: #adcbe8;
+  --subheader-color: #cbddf5;
+  --subheader-color-border: #475e7d;
 }

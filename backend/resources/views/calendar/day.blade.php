@@ -4,11 +4,10 @@
 
 @section('content')
   <div class="row">
-
   <div class="col-xs-12">
     <div class="col-xs-12 header-today">
       @yield('header-today')
-    </div>
+    </div>  
   </div>
 
     <div class="col col-xs-12 main-container">
@@ -43,7 +42,7 @@
                   @else($path == "calendar/day/meal")
                     <a href="/calendar/day/meal?date={{$task->getFormatDateHyphen()}}">{{$task->getFormatDate()}}</a>
                   @endif
-                  <a>{{$task->getFormatTime()}}</a>
+                  <a>  {{$task->getFormatTime()}}</a>
                 </div>
               </div>
             @endforeach

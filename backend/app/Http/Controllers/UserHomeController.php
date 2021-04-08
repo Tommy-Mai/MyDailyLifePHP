@@ -20,6 +20,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Pagination\LengthAwarePaginator;
 
 class UserHomeController extends Controller
 {
@@ -85,13 +86,23 @@ class UserHomeController extends Controller
                 $user->image = $fileName;
             }
 
-            // ユーザー情報保存
-            $user->save();
-            return redirect('/users')
+        // テーマカラー変更
+        $user->color = $request->color;
+
+        // ユーザー情報保存
+        $user->save();
+        return redirect('/users')
             ->with('message', 'ユーザー情報を更新しました。');
         }else{
-            return redirect('/users')
-            ->with('message', '保護されているコンテンツです。');
+            if(!empty($request->color)){
+                $user->color = $request->color;
+                $user->save();
+                return redirect('/users')
+                ->with('message', 'テーマカラーを変更しました。');
+            }else{
+                return redirect('/users')
+                ->with('message', '保護されているコンテンツです。');
+            }
         }
     }
 
@@ -113,7 +124,7 @@ class UserHomeController extends Controller
             // ユーザー情報保存
             $user->save();
             return redirect()->route('user_home.meal_task')->with('message', 'パスワードを変更しました。');
-        }else{
+	}else{
             return redirect('/users')
             ->with('message', '保護されているコンテンツです。');
 
@@ -183,10 +194,9 @@ class UserHomeController extends Controller
             $query->whereDate('date', '<=',$to_date);
         }
 
-        $tasks = $query->get();
+        // 1ページにつき5件ずつ表示させる
+        $tasks = $query->orderBy('created_at', 'desc')->paginate(5);
 
-        // 1ページにつき5件ずつ表示させます
-        // $tasks = $query->paginate(5);
 
     // Viewを表示
         return view('user_home/meal_task', [
@@ -260,10 +270,8 @@ class UserHomeController extends Controller
             $query->whereDate('date', '<=',$to_date);
         }
 
-        $tasks = $query->get();
-
-        // 1ページにつき5件ずつ表示させます
-        // $tasks = $query->paginate(5);
+        // 1ページにつき5件ずつ表示させる
+        $tasks = $query->orderBy('created_at', 'desc')->paginate(5);
 
     // Viewを表示
         return view('user_home/task', [
@@ -278,7 +286,10 @@ class UserHomeController extends Controller
     public function memo(Request $request)
     {
         $user = Auth::user();
-        $memos = $user->memos()->get();
+        $memos = $user->memos();
+
+        // 1ページにつき5件ずつ表示させる
+        $memos = $memos->orderBy('created_at', 'desc')->paginate(5);
     
     // Viewを表示
     return view('user_home/memo', [

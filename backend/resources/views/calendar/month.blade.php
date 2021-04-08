@@ -12,15 +12,15 @@
 
       <div class="col-xs-12">
         <div class="calendar-heading col-xs-12">
-          <div class="icon col-xs-1 col-xs-offset-3">
+          <div class="icon">
             <a href="/calendar/month?y={{$subY}}&m={{$subM}}">&lt;</a>
           </div>
-          <span class="calendar-title col-xs-4 text-center" id="pop_trigger">
+          <span class="calendar-title text-center" id="pop_trigger">
             <a href="/calendar/month">
               {{$date->year}}年{{$date->month}}月
             </a>
           </span>
-          <div class="icon col-xs-1">
+          <div class="icon">
             <a href="/calendar/month?y={{$addY}}&&m={{$addM}}">&gt;</a>
           </div>
         </div>
@@ -63,7 +63,7 @@
               <!-- ループの日と今日を比較 -->
               @if ($comp == $today_comp)
                 <!-- 同じなので緑色の背景にする -->
-                  <td class="day today" style="background: #8fd3f5; color: white;">
+                  <td class="day today" style="background: var(--theme-color); color: white;">
                   {{$date->day}}
                   <div class="task-count">
                     <a href="/calendar/day/meal?date={{$date->format('Y-m-d')}}" class="col-xs-12">食事{{$meal_tasks->getTaskNum($date)}}件</a>

@@ -16,7 +16,7 @@ class MealCommentsTableSeeder extends Seeder
     public function run()
     {
         DB::table('meal_comments')->insert([
-            'comment' => 'こちらはコメント欄です。\n1つのコメントにつき140文字まで登録できます。',
+            'comment' => 'こちらはコメント欄です。1つのコメントにつき140文字まで登録できます。',
             'image' => '',
             'task_id'=> 1,
             'user_id'=> 1,
@@ -25,7 +25,7 @@ class MealCommentsTableSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
         DB::table('meal_comments')->insert([
-            'comment' => 'コメントには編集機能はなく削除のみ可能です。\nただしデフォルトで登録されているこのページのタスク・コメントは削除できません。',
+            'comment' => 'コメントには編集機能はなく削除のみ可能です。ただしデフォルトで登録されているこのページのタスク・コメントは削除できません。',
             'image' => '',
             'task_id'=> 1,
             'user_id'=> 1,
@@ -34,7 +34,7 @@ class MealCommentsTableSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
         DB::table('meal_comments')->insert([
-            'comment' => 'コメントには画像を投稿することも可能です。\n投稿できる画像は1ユーザーにつき5枚までに\n制限されています。',
+            'comment' => 'コメントには画像を投稿することも可能です。',
             'image' => '',
             'task_id'=> 1,
             'user_id'=> 1,
@@ -43,7 +43,7 @@ class MealCommentsTableSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
         DB::table('meal_comments')->insert([
-            'comment' => '右上のタグ一覧のその他タブの\n＋ボタンをクリックするとオリジナルの\nタグを作成して、\nタスクを登録することもできます。',
+            'comment' => '右上のタグ一覧のその他タブの＋ボタンをクリックするとオリジナルのタグを作成して、タスクを登録することもできます。',
             'image' => '',
             'task_id'=> 1,
             'user_id'=> 1,
@@ -52,7 +52,7 @@ class MealCommentsTableSeeder extends Seeder
             'updated_at' => Carbon::now(),
         ]);
         DB::table('meal_comments')->insert([
-            'comment' => '是非色々な機能をお試しください。\nまた、ご意見ご感想をいただけますと、\n製作者の励みになります。',
+            'comment' => '是非色々な機能をお試しください。また、ご意見ご感想をいただけますと、製作者の励みになります。',
             'image' => '',
             'task_id'=> 1,
             'user_id'=> 1,

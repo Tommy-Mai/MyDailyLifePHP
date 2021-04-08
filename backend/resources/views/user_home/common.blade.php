@@ -92,8 +92,10 @@
                 </div>
               </div>
             @endforeach
+            </ul>
           </div>
         </nav>
+        {{ $tasks->links('vendor.pagination.bootstrap-4') }}
     </div>
   </div>
 @endsection

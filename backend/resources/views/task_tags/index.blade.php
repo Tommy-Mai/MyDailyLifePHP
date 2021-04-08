@@ -16,8 +16,8 @@
         <form method="POST" action="{{ route('task_tags.create') }}" class="form-items">
           <div class="modal-body">
             @csrf
-            <label class="form-label">タグ名</label>
-            <input type="text" name="name" class="col-xs-12" value="{{ old('name') }}"/>
+            <label class="form-label required">タグ名</label>
+            <input type="text" name="name" class="col-xs-12" value="{{ old('name') }}" autofocus/>
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn form-btn col-xs-3 col-xs-offset-9">作成</button>
@@ -37,8 +37,8 @@
         <form method="POST" class="form-items" id="edit-modal-form">
           <div class="modal-body">
             @csrf
-            <label class="form-label">タグ名</label>
-            <input type="text" name="name" class="col-xs-12" value="" id="edit-modal-name"/>
+            <label class="form-label required">タグ名</label>
+            <input type="text" name="name" class="col-xs-12" value="" id="edit-modal-name" autofocus/>
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn form-btn col-xs-3 col-xs-offset-9">更新</button>
@@ -54,11 +54,11 @@
 <!-- タグ作成モーダル 表示ボタン -->
 <div class="modal-btn-container col-xs-12">
   <div class="col-xs-6 col-xs-offset-3">
-    <i class="fas fa-plus modal-open-btn" data-toggle="modal" data-target="#tag-create-modal" data-type="@create"></i>
+    <i class="fas fa-plus modal-open-btn" data-toggle="modal" data-target="#tag-create-modal" data-type="@create" id="pre-open-modal"></i>
   </div>
 </div>
 
-<div class="row">
+<div class="row col-xs-12">
   <div class="col col-xs-12 main-container">
     <nav class="panel panel-default">
       <div class="panel-heading">
@@ -81,12 +81,14 @@
               <a href="/users/other?tag_id={{ $tag->id }}">
                 タスク一覧
               </a>
-              <p>0件</P>
+              <p>{{ $tasks->where('tag_id', $tag->id)->count() }}件</P>
             </div>
             <div class="to-create-tag-index col-xs-12">
-              <a href="{{ route('tasks.create') }}">タスク作成</a>
-            </div>
-            <div class="to-create-tag-index col-xs-11">
+              <a href="/tasks/create?tag_id={{$tag->id}}">タスク作成</a>
+	    </div>
+
+            <div class="col-xs-12 to-create-tag-index-bottom"> 
+	    <div class="to-create-tag-index">
               <p class="modal-open-btn" data-toggle="modal" data-target="#tag-create-modal" data-type="@edit" data-id="{{$tag->id}}" data-name="{{$tag->name}}">タグ編集</p>
             </div>
             <div class="to-create-tag-index">
@@ -97,11 +99,27 @@
                   <i class="fas fa-trash-alt"></i>
                 </button>
               </form>
+	    </div>
             </div>
+
           </div>
         @endforeach
       </div>
     </nav>
+    {{ $tags->links('vendor.pagination.bootstrap-4') }}
   </div>
 </div>
+
+<!-- 登録されたタグがない場合、ページ表示時にタグ作成モーダルを表示 -->
+@if($tags->isEmpty())
+  <script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // ページが読み込まれたあとに実行
+    document.getElementById('pre-open-modal').click();
+    $("#edit-modal").addClass('modal-hide');
+    $("#create-modal").removeClass('modal-hide');
+  });
+  </script>
+@endif
+
 @endsection

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Carbon\Carbon;
 use App\Models\TaskTag;
 use App\Models\Task;
 use App\Models\TaskComment;
@@ -25,9 +26,94 @@ class TaskController extends Controller
     public function showCreateForm(Request $request)
     {
         $tags = Auth::user()->task_tags()->get();
+
+        // リクエストにタグ情報があるか確認し、デフォルトのタグを設定
+        if(!empty(Auth::user()->task_tags()->where('id', $request->tag_id)->first())){
+            $selected_tag = $request->tag_id;
+        }else{
+            $selected_tag = null;
+        }
+
+        // リクエストに日付があるか確認し、デフォルトの日付を判定
+        $date = $request->date;
+        if(!empty($date)){
+            $date = Carbon::createFromDate($date);
+        }else{
+            $date = Carbon::createFromDate();
+        }
+        
+        $date = date("Y年m月d日", strtotime($date));
+
+        // 現在の時刻をデフォルトの時刻として表示
+        $time = Carbon::createFromDate();
+        $time = date("H:i", strtotime($time));
+
+        // ここから <”タイトル”サジェスト機能>
+        // データベースに登録されたタスクのうち、作成日の新しい”タスク名”を配列に保存
+        $tasks = Auth::user()->tasks()
+        ->select('name', 'created_at')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        $tmp= [];
+        $suggestTaskNames = [];
+        foreach ($tasks as $task){
+            if (!in_array($task->name, $tmp)) {
+                $tmp[] = $task->name;
+                $suggestTaskNames[] = $task;
+            }
+        }
+        //  データ数を5つに絞り込み
+        $suggestTaskNames = array_slice($suggestTaskNames , 0, 5);
+        //  ここまで <”タイトル”サジェスト機能>
+
+        // ここから <”誰と”サジェスト機能>
+        // データベースに登録されたタスクのうち、作成日の新しい”誰と”を配列に保存
+        $tasks = Auth::user()->tasks()
+        ->select('with_whom', 'created_at')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        $tmp = [];
+        $suggestWithWhom = [];
+        foreach ($tasks as $task){
+            if (!in_array($task->with_whom, $tmp)) {
+                $tmp[] = $task->with_whom;
+                $suggestWithWhom[] = $task;
+            }
+        }
+        //  データ数を5つに絞り込み
+        $suggestWithWhom = array_slice($suggestWithWhom , 0, 5);
+        //  ここまで <”誰と”サジェスト機能>
+
+        // ここから <”どこで”サジェスト機能>
+        // データベースに登録されたタスクのうち、作成日の新しい”どこで”を配列に保存
+        $tasks = Auth::user()->tasks()
+        ->select('where', 'created_at')
+        ->orderBy('created_at', 'desc')
+        ->get();
+
+        $tmp = [];
+        $suggestWhere = [];
+        foreach ($tasks as $task){
+            if (!in_array($task->where, $tmp)) {
+                $tmp[] = $task->where;
+                $suggestWhere[] = $task;
+            }
+        }
+        //  データ数を5つに絞り込み
+        $suggestWhere = array_slice($suggestWhere , 0, 5);
+        //  ここまで <”どこで”サジェスト機能>
+
         return view('tasks/create', [
             'tags' => $tags,
             'path' => $request->path(),
+            'date' => $date,
+            'time' => $time,
+            'selected_tag' => $selected_tag,
+            'tasks' => $suggestTaskNames,
+            'suggest_with_whom_list' => $suggestWithWhom,
+            'suggest_where_list' => $suggestWhere,
         ]);
     }
 

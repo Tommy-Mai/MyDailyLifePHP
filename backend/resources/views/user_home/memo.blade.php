@@ -16,7 +16,7 @@
         <form method="POST" action="{{ route('memo.create') }}" class="form-items">
           <div class="modal-body">
             @csrf
-            <label class="form-label col-xs-12">タイトル</label>
+            <label class="form-label col-xs-12 required">タイトル</label>
             <input type="text" name="name" class="col-xs-12" value="{{ old('name') }}"/>
             <label class="form-label col-xs-12">詳細</label>
             <textarea class="col-xs-12" name="description" value="{{ old('description') }}"></textarea>
@@ -39,7 +39,7 @@
         <form method="POST" class="form-items" id="edit-modal-form-memo">
           <div class="modal-body">
             @csrf
-            <label class="form-label col-xs-12">タイトル</label>
+            <label class="form-label col-xs-12 required">タイトル</label>
             <input type="text" name="name" class="col-xs-12" value="{{ old('name') }}" id="edit-modal-name" />
             <label class="form-label col-xs-12">詳細</label>
             <textarea class="col-xs-12" name="description" value="{{ old('description') }}" id="edit-modal-description"></textarea>
@@ -62,10 +62,10 @@
           <div class="col-xs-2 col-xs-offset-2">
             <img src="{{ asset('storage/profiles/'.$user->image) }}" alt="プロフィール画像" class="rounded-circle user-img">
           </div>
-          <div class="row user-info-items">
+          <div class="row user-info-items col-xs-6">
             <div class="col-xs-12">{{ $user->name }}</div>
             <div class="col-xs-12">{{ $user->email }}</div>
-            <div class="col-xs-1 col-xs-offset-5">
+            <div class="col-xs-1 col-xs-offset-9">
               <a href="{{ route('user_home.edit') }}"><i class="fas fa-cog"></i></a>
             </div>
           </div>
@@ -116,6 +116,7 @@
             @endforeach
           </div>
         </nav>
+        {{ $memos->links('vendor.pagination.bootstrap-4') }}
     </div>
   </div>
 @endsection

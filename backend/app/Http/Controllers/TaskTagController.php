@@ -19,7 +19,7 @@ class TaskTagController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $tags = $user->task_tags()->get();
+        $tags = $user->task_tags()->orderBy('created_at', 'desc')->paginate(10);
         $tasks = $user->tasks()->get();
 
         return view('task_tags/index', [
